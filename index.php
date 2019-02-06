@@ -10,7 +10,7 @@ include('navbar.php');
 	
 	<section class="form" id="login_form">
 		<?php
-		if(empty($login) and empty($user_id)){
+		if( $_SESSION['user_id']==0 ){
 			include("login/login_form.php");
 		}else{
 			include("login/welcome_form.php");

@@ -1,19 +1,18 @@
 <?php
-include('header.php');
-include('navbar.php');
+include('../header.php');
+include('../navbar.php');
 ?>
 
 <main>
 	<div class="caption">
-		Регистрация нового бойца.
+		Регистрация нового пользователя.
 	</div>
 	
 	<section class="form" id="registration_form">
-		<?php if(empty($login) and empty($user_id)) : ?>
+		<?php if( $_SESSION['user_id']==0 ) : ?>
 			<div class="caption">Анкета:</div>
 			<form action="new_user.php" method="POST">
 				<input type="text" name="login" placeholder="Логин">
-				<input type="text" name="user_name" placeholder="Имя бойца">
 				<input type="password" name="password" placeholder="Пароль">
 				<input type="password" name="password2" placeholder="Повторите пароль">
 				<br><br>
@@ -29,5 +28,5 @@ include('navbar.php');
 </main>
 
 <?php
-include('footer.php');
+include('../footer.php');
 ?>
