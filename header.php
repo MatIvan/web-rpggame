@@ -2,6 +2,7 @@
 	session_start();
 	require_once("login/db-connect.php");
 	require_once("login/login_functions.php");
+	require_once("game/game_functions.php");
 ?>
 
 <!DOCTYPE html>

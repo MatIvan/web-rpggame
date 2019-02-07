@@ -117,3 +117,14 @@ footer{
 	font-size: 0.8em;
 }
 
+#warriors_form{
+	width: 90%;
+	margin: auto;
+	margin-top: 30px;
+}
+
+#new_warrior{
+	width: 20em;
+	margin: auto;
+	margin-top: 60px;
+}

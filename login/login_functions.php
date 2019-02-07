@@ -47,4 +47,5 @@ function login_user($link, $login, $password){
 	}
 	return $users['id'];
 }
+
 ?>
