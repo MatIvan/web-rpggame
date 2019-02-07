@@ -9,7 +9,7 @@ include('../navbar.php');
 	</div>
 	
 	<section class="form" id="registration_form">
-		<?php if( $_SESSION['user_id']==0 ) : ?>
+		<?php if( empty($_SESSION['user_id']) ) : ?>
 			<div class="caption">Анкета:</div>
 			<form action="new_user.php" method="POST">
 				<input type="text" name="login" placeholder="Логин">

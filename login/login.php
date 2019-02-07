@@ -30,7 +30,7 @@ include('../navbar.php');
 			$password = md5($password);//шифруем пароль
 			 
 			$result = mysqli_query($link, "SELECT id FROM users WHERE login='$login' AND password='$password'");
-			$users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+			$users = mysqli_fetch_array($result);
 			
 			if (empty($users['id'])){
 				echo "<br><br>Извините, введённый вами логин или пароль неверный.";
