@@ -24,20 +24,11 @@ include('../navbar.php');
 			}elseif($_POST['password'] != $_POST['password2']) {
 				echo "Введенные пароли не совпадают!";
 			}else{
-				$login = $_POST['login'];
-				$password = $_POST['password'];
-				$mdPassword = md5($password);
-				$password2 = $_POST['password2'];
-              
-				$sql = "SELECT id FROM users WHERE login='$login'";
-				$result = mysqli_query($link, $sql) or die(mysqli_error());
-            
-				if (mysqli_num_rows($result) > 0) {
-					echo "Пользователь с таким логином зарегистрирован!";
-				}else{
-                    $sql = "INSERT INTO users ( login, password ) VALUES ('$login', '$mdPassword' )";
-                    $result = mysqli_query($link, $sql) or die(mysqli_error());;
+				if ( check_login( $link, $_POST['login'] ) ) {
+					add_new_user( $link, $_POST['login'], $_POST['password']);
                     echo "Вы успешно зарегистрировались!";
+				}else{
+                    echo "Пользователь с таким логином зарегистрирован!";
 				}
 			}
 		}
