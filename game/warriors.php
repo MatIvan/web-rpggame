@@ -18,22 +18,35 @@ include('../navbar.php');
 	<?php else: ?>
 		<section class="form" id="warriors_form">
 			<?php 
-				$warriors = get_user_warriors( $link, $_SESSION['user_id'] );
+				$warriors = get_user_warriors( $_SESSION['user_id'] );
 			?>
 			<?php if( count($warriors) === 0): ?>
 				Ещё не создано ни одного бойца.
 			<?php else: ?>
-				<?php foreach($warriors as $warrior): ?>
-					<?= $warrior["id"] ?> / 
-					<?= $warrior["name"] ?> / 
-					<?= $warrior["balance"] ?> / 
-					<?= $warrior["hp"] ?> / 
-					<?= $warrior["attack"] ?> / 
-					<?= $warrior["shield"] ?>
-					<br><br>
-				<?php endforeach; ?>
+				<table id="warriors_table">
+					<tr>
+						<th>Имя бойца</th>
+						<th>Баланс</th>
+						<th>Жизнь</th>
+						<th>Атака</th>
+						<th>Защита</th>
+						<th>#</th>
+						<th>#</th>
+					</tr>
+					<?php foreach($warriors as $warrior): ?>
+						<tr>
+							<td><?= $warrior["name"] ?></td>
+							<td><?= $warrior["balance"] ?></td>
+							<td><?= $warrior["hp"] ?></td>
+							<td><?= $warrior["attack"] ?></td>
+							<td><?= $warrior["shield"] ?></td>
+							<td>edit</td>
+							<td>в бой</td>
+						</tr>
+					<?php endforeach; ?>
+				</table>
 			<?php endif ?>
-			<form action="/game/new_warrior.php" method="post">
+			<form action="/game/new_warrior.php" method="post" id="btn_new_war">
 				<input type="submit" value="Создать нового бойца" />
 			</form>
 		</section>

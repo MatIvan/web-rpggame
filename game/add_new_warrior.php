@@ -32,7 +32,7 @@ include('../navbar.php');
 					'shield' => $_POST['shield'],
 					'user_id' => $_SESSION['user_id']
 				);
-				add_new_warrior( $link, $new_warrior );
+				add_new_warrior( $new_warrior );
                 echo "Вы успешно создали нового бойца!";
 			}
 		}

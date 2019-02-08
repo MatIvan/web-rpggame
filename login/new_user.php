@@ -24,8 +24,8 @@ include('../navbar.php');
 			}elseif($_POST['password'] != $_POST['password2']) {
 				echo "Введенные пароли не совпадают!";
 			}else{
-				if ( check_login( $link, $_POST['login'] ) ) {
-					add_new_user( $link, $_POST['login'], $_POST['password']);
+				if ( check_login( $_POST['login'] ) ) {
+					add_new_user( $_POST['login'], $_POST['password']);
                     echo "Вы успешно зарегистрировались!";
 				}else{
                     echo "Пользователь с таким логином зарегистрирован!";

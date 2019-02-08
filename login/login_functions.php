@@ -1,7 +1,8 @@
 <?php
 
 //Вернет логин пользователя по id
-function get_user_login( $link, $user_id ){
+function get_user_login( $user_id ){
+	global $link;
 	$sql = "SELECT login FROM users WHERE id='$user_id'";
 	$result = mysqli_query($link, $sql);
 	$login = mysqli_fetch_array($result);
@@ -10,7 +11,8 @@ function get_user_login( $link, $user_id ){
 
 //Проверить существует ли пользователь с указанным логином
 //Вернет true если пользователя нет
-function check_login( $link, $login ){
+function check_login( $login ){
+	global $link;
 	$sql = "SELECT id FROM users WHERE login='$login'";
 	$result = mysqli_query($link, $sql) or die(mysqli_error());
 	if (mysqli_num_rows($result) > 0) {
@@ -21,7 +23,8 @@ function check_login( $link, $login ){
 
 //Добавить нового пользователя в БД
 //Ни чего не возвращает
-function add_new_user( $link, $login, $password){
+function add_new_user( $login, $password){
+	global $link;
 	$mdPassword = md5($password);
 	$sql = "INSERT INTO users ( login, password ) VALUES ('$login', '$mdPassword' )";
     $result = mysqli_query($link, $sql) or die(mysqli_error());
@@ -29,7 +32,8 @@ function add_new_user( $link, $login, $password){
 
 //Проверить логин и пароль пользователя.
 //Вернет id или 0 (логин и пароль неверны)
-function login_user($link, $login, $password){
+function login_user( $login, $password){
+	global $link;
 	$login = stripslashes($login);
 	$login = htmlspecialchars($login);
 	$login = trim($login);

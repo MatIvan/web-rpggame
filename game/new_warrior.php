@@ -19,11 +19,11 @@ include('../navbar.php');
 		<section class="form" id="new_warrior">
 			<div class="caption">Укажите характеристики:</div>
 			<form action="add_new_warrior.php" method="POST">
-				<input type="text" name="name" placeholder="Имя бойца">
-				<input type="text" name="balance" placeholder="Баланс">
-				<input type="text" name="hp" placeholder="Жизнь">
-				<input type="text" name="attack" placeholder="Атака">
-				<input type="text" name="shield" placeholder="Защита">
+				<input type="text" name="name" placeholder="Имя бойца" >
+				<input type="text" name="balance" placeholder="Баланс" >
+				<input type="text" name="hp" placeholder="Жизнь" >
+				<input type="text" name="attack" placeholder="Атака" >
+				<input type="text" name="shield" placeholder="Защита" >
 				<br><br>
 				<input class="btn" type="submit" value="Создать" name="submit" >
 			</form>

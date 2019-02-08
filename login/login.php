@@ -14,7 +14,7 @@ include('../navbar.php');
 			if ( $_POST['login'] =='' or $_POST['password'] == '' ) {
 				echo "<br><br>Введите пожалуйста логин и пароль!";
 			} else {
-				$_SESSION['user_id']=login_user($link, $_POST['login'], $_POST['password']);
+				$_SESSION['user_id']=login_user( $_POST['login'], $_POST['password']);
 				if ($_SESSION['user_id']==0){
 					unset($_SESSION['user_id']);
 					echo "<br><br>Извините, введённый вами логин или пароль неверный.";
