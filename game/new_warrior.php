@@ -28,12 +28,11 @@ include('../navbar.php');
 					$bnt_val="Изменить";
 				}else{
 					$warrior = array(
-					'id' => 0,
+					'id' => "0",
 					'name' => "",
-					'balance' => 100,
-					'hp' => 0,
-					'attack' => 0,
-					'shield' => 0
+					'hp' => "",
+					'attack' => "",
+					'shield' => ""
 					);
 					$bnt_val="Создать";
 				}
@@ -41,7 +40,6 @@ include('../navbar.php');
 			<form action="add_new_warrior.php" method="POST">
 				<input hidden="true" type="text" name="id" value= <?= $warrior["id"] ?>  >
 				<input type="text" name="name" placeholder="Имя бойца" value= <?= $warrior["name"] ?> >
-				<input type="text" name="balance" placeholder="Баланс" value= <?= $warrior["balance"] ?> >
 				<input type="text" name="hp" placeholder="Жизнь" value= <?= $warrior["hp"] ?> >
 				<input type="text" name="attack" placeholder="Атака" value= <?= $warrior["attack"] ?> >
 				<input type="text" name="shield" placeholder="Защита" value= <?= $warrior["shield"] ?> >

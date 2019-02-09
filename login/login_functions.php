@@ -1,12 +1,12 @@
 <?php
 
-//Вернет логин пользователя по id
-function get_user_login( $user_id ){
+//Вернет логин и баланс пользователя по id
+function get_user_by_id( $user_id ){
 	global $link;
-	$sql = "SELECT login FROM users WHERE id='$user_id'";
+	$sql = "SELECT login, balance FROM users WHERE id='$user_id'";
 	$result = mysqli_query($link, $sql);
-	$login = mysqli_fetch_array($result);
-	return $login['login'];
+	$user = mysqli_fetch_array($result);
+	return $user;
 }
 
 //Проверить существует ли пользователь с указанным логином
@@ -22,17 +22,27 @@ function check_login( $login ){
 }
 
 //Добавить нового пользователя в БД
-//Ни чего не возвращает
-function add_new_user( $login, $password){
+//Вернёт 0 если добать пользователя не удалось
+function add_new_user( $user ){
 	global $link;
-	$mdPassword = md5($password);
-	$sql = "INSERT INTO users ( login, password ) VALUES ('$login', '$mdPassword' )";
-    $result = mysqli_query($link, $sql) or die(mysqli_error());
+	$mdPassword = md5($user["password"]);
+	$sql = "INSERT INTO users ( login, password, balance ) VALUES ( ?, ?, ? )";
+	$stmt  = mysqli_prepare( $link, $sql );
+	mysqli_stmt_bind_param($stmt,
+		"ssi",
+		$user["login"],
+		$mdPassword,
+		$user["balance"]
+	);
+	mysqli_stmt_execute($stmt);
+	$res = mysqli_stmt_affected_rows($stmt);
+	mysqli_stmt_close($stmt);
+	return res;
 }
 
 //Проверить логин и пароль пользователя.
 //Вернет id или 0 (логин и пароль неверны)
-function login_user( $login, $password){
+function login_user( $login, $password ){
 	global $link;
 	$login = stripslashes($login);
 	$login = htmlspecialchars($login);

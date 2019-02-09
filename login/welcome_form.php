@@ -1,7 +1,10 @@
-<div class="caption">Привет,</div>
+<div class="caption">
+	Привет, <?= $_SESSION['user_login'] ?> !!!
+</div>
 <span>
-	<strong> <?= get_user_login( $_SESSION['user_id'] ) ?> !!!</strong>
+	<br>
+	У вас на балансе: <strong> <?= $_SESSION['user_balance'] ?> </strong> очков.
 	<br><br>
-	Твои бойцы скучают без сражений.
+	Да начнутся великие битвы !
 	<br><br>
 </span>

@@ -17,9 +17,14 @@ include('../navbar.php');
 				$_SESSION['user_id']=login_user( $_POST['login'], $_POST['password']);
 				if ($_SESSION['user_id']==0){
 					unset($_SESSION['user_id']);
+					unset($_SESSION['user_login']);
+					unset($_SESSION['user_balance']);
 					echo "<br><br>Извините, введённый вами логин или пароль неверный.";
 				}
 				else {
+					$user = get_user_by_id( $_SESSION['user_id'] );
+					$_SESSION['user_login'] = $user["login"];
+					$_SESSION['user_balance'] = $user["balance"];
 					echo "<meta http-equiv='Refresh' content='0; URL=/index.php'>";
 				}
 			}

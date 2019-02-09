@@ -21,19 +21,17 @@ include('../navbar.php');
 				echo "Значение уровня атаки должно быть числом.";
 			}elseif(!is_numeric($_POST['shield'])){
 				echo "Значение уровня защиты должно быть числом.";
-			}elseif(!is_numeric($_POST['balance'])){
-				echo "Значение баланса должно быть числом.";
 			}else{
 				$new_warrior = array(
 					'id' => $_POST['id'],
 					'name' => $_POST['name'],
-					'balance' => $_POST['balance'],
 					'hp' => $_POST['hp'],
 					'attack' => $_POST['attack'],
 					'shield' => $_POST['shield'],
 					'user_id' => $_SESSION['user_id']
 				);
-				if( $new_warrior['id']===0 ){
+				
+				if( $new_warrior['id']==="0" ){
 					if ( add_new_warrior( $new_warrior ) === 0 ){
 						echo "Что-то пошло не так: Боец не был создан!!!";
 					}else{

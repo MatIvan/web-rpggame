@@ -12,4 +12,10 @@
 			<li><a href="/login/logout.php">Выход</a></li>
 		<?php endif ?>
   </ul>
+  
+	<?php if( !empty($_SESSION['user_id']) ): ?>
+		<div class="user-data">
+			<?= $_SESSION['user_login'] ?> (<?= $_SESSION['user_balance'] ?> очков.)
+		</div>
+	<?php endif ?>
 </nav>

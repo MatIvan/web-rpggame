@@ -26,7 +26,6 @@ include('../navbar.php');
 				<table id="warriors_table">
 					<tr>
 						<th>Имя бойца</th>
-						<th>Баланс</th>
 						<th>Жизнь</th>
 						<th>Атака</th>
 						<th>Защита</th>
@@ -36,7 +35,6 @@ include('../navbar.php');
 					<?php foreach($warriors as $warrior): ?>
 						<tr>
 							<td><?= $warrior["name"] ?></td>
-							<td><?= $warrior["balance"] ?></td>
 							<td><?= $warrior["hp"] ?></td>
 							<td><?= $warrior["attack"] ?></td>
 							<td><?= $warrior["shield"] ?></td>

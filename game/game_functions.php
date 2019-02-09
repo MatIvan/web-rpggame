@@ -3,7 +3,7 @@
 // Вернёт таблицу со всеми бойцами пользователя.
 function get_user_warriors( $user_id ){
 	global $link;
-	$sql = "SELECT id, name, balance, hp, attack, shield FROM warriors WHERE user_id=$user_id";
+	$sql = "SELECT id, name, hp, attack, shield FROM warriors WHERE user_id=$user_id";
 	$result = mysqli_query($link, $sql);
 	$warriors = mysqli_fetch_all($result, MYSQLI_ASSOC);
 	return $warriors;
@@ -12,11 +12,10 @@ function get_user_warriors( $user_id ){
 //Добавить нового бойца в БД
 function add_new_warrior( $new_warrior){
 	global $link;
-	$stmt  = mysqli_prepare( $link, "INSERT INTO warriors ( name, balance, hp, attack, shield, user_id ) VALUES (?,?,?,?,?,?)" );
+	$stmt  = mysqli_prepare( $link, "INSERT INTO warriors ( name, hp, attack, shield, user_id ) VALUES (?,?,?,?,?)" );
 	mysqli_stmt_bind_param($stmt,
-		"siiiii",
+		"siiii",
 		$new_warrior["name"],
-		$new_warrior["balance"],
 		$new_warrior["hp"],
 		$new_warrior["attack"],
 		$new_warrior["shield"],
@@ -40,11 +39,10 @@ function get_warrior_by_id( $warrior_id ){
 //Изменить бойца в БД
 function edit_warrior( $warrior ){
 	global $link;
-	$stmt  = mysqli_prepare( $link, "UPDATE warriors SET name = ?, balance = ?, hp = ?, attack = ?, shield = ? WHERE warriors.id = ?" );
+	$stmt  = mysqli_prepare( $link, "UPDATE warriors SET name = ?, hp = ?, attack = ?, shield = ? WHERE warriors.id = ?" );
 	mysqli_stmt_bind_param($stmt,
-		"siiiii",
+		"siiii",
 		$warrior["name"],
-		$warrior["balance"],
 		$warrior["hp"],
 		$warrior["attack"],
 		$warrior["shield"],

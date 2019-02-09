@@ -25,7 +25,12 @@ include('../navbar.php');
 				echo "Введенные пароли не совпадают!";
 			}else{
 				if ( check_login( $_POST['login'] ) ) {
-					add_new_user( $_POST['login'], $_POST['password']);
+					$user = array(
+						'login' => $_POST['login'],
+						'password' => $_POST['password'],
+						'balance' => 100 //По умолчанию всем новым пользователям 100 очков на баланс
+					);
+					add_new_user( $user );
                     echo "Вы успешно зарегистрировались!";
 				}else{
                     echo "Пользователь с таким логином зарегистрирован!";

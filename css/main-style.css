@@ -47,6 +47,13 @@ nav a:hover{
   text-decoration: underline;
 }
 
+nav .user-data{
+	margin-top:-4px;
+	float: right;
+	font-weight: bold;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+}
+
 
 main {
 	border: 2px solid black;
@@ -96,7 +103,7 @@ footer{
 
 
 #login_form{
-	width: 14em;
+	width: 50%;
 	margin: auto;
 	margin-top: 60px;
 }
