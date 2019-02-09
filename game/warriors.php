@@ -40,7 +40,7 @@ include('../navbar.php');
 							<td><?= $warrior["hp"] ?></td>
 							<td><?= $warrior["attack"] ?></td>
 							<td><?= $warrior["shield"] ?></td>
-							<td>edit</td>
+							<td><a href="/game/new_warrior.php?id=<?= $warrior["id"] ?>">edit<a></td>
 							<td>в бой</td>
 						</tr>
 					<?php endforeach; ?>

@@ -23,7 +23,37 @@ function add_new_warrior( $new_warrior){
 		$new_warrior["user_id"]
 	);
 	mysqli_stmt_execute($stmt);
+	$res = mysqli_stmt_affected_rows($stmt);
 	mysqli_stmt_close($stmt);
+	return $res;
+}
+
+//Вернёт бойца по ID
+function get_warrior_by_id( $warrior_id ){
+	global $link;
+	$sql = "SELECT * FROM warriors WHERE id=".$warrior_id;
+	$result = mysqli_query($link, $sql);
+	$warrior = mysqli_fetch_array($result, MYSQLI_ASSOC);
+	return $warrior;
+}
+
+//Изменить бойца в БД
+function edit_warrior( $warrior ){
+	global $link;
+	$stmt  = mysqli_prepare( $link, "UPDATE warriors SET name = ?, balance = ?, hp = ?, attack = ?, shield = ? WHERE warriors.id = ?" );
+	mysqli_stmt_bind_param($stmt,
+		"siiiii",
+		$warrior["name"],
+		$warrior["balance"],
+		$warrior["hp"],
+		$warrior["attack"],
+		$warrior["shield"],
+		$warrior["id"]
+	);
+	mysqli_stmt_execute($stmt);
+	$res = mysqli_stmt_affected_rows($stmt);
+	mysqli_stmt_close($stmt);
+	return $res;
 }
 
 ?>

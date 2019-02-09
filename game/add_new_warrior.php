@@ -25,6 +25,7 @@ include('../navbar.php');
 				echo "Значение баланса должно быть числом.";
 			}else{
 				$new_warrior = array(
+					'id' => $_POST['id'],
 					'name' => $_POST['name'],
 					'balance' => $_POST['balance'],
 					'hp' => $_POST['hp'],
@@ -32,14 +33,23 @@ include('../navbar.php');
 					'shield' => $_POST['shield'],
 					'user_id' => $_SESSION['user_id']
 				);
-				add_new_warrior( $new_warrior );
-                echo "Вы успешно создали нового бойца!";
+				if( $new_warrior['id']===0 ){
+					if ( add_new_warrior( $new_warrior ) === 0 ){
+						echo "Что-то пошло не так: Боец не был создан!!!";
+					}else{
+						echo "Вы успешно создали нового бойца!";
+					}
+				}else{
+					if ( edit_warrior( $new_warrior ) === 0 ){
+						echo "Что-то пошло не так: Боец не был изменен!!!";
+					}else{
+						echo "Вы успешно изменили бойца!";
+					}
+				}
 			}
 		}
 		
 		?>
-		<br><br>
-		<a href="/game/new_warrior.php"> <<< назад </a>
 		<br><br>
 		<a href="/game/warriors.php">Вернуться к бойцам</a>
 		<br><br>
