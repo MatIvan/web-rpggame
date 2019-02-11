@@ -5,6 +5,6 @@
 	<br>
 	У вас на балансе: <strong> <?= $_SESSION['user_balance'] ?> </strong> очков.
 	<br><br>
-	Да начнутся великие битвы !
+		<a href="/game/warriors.php">Показать моих бойцов</a>
 	<br><br>
 </span>

@@ -1,5 +1,26 @@
 <?php
 
+//Установить новый баланс пользователя
+//True если успех, иначе False
+function set_user_balance( $user_id, $new_balance ){
+	global $link;
+	$stmt  = mysqli_prepare( $link, "UPDATE users SET balance = ? WHERE users.id = ?" );
+	mysqli_stmt_bind_param($stmt,
+		"ii",
+		$new_balance,
+		$user_id
+	);
+	mysqli_stmt_execute($stmt);
+	$res = mysqli_stmt_affected_rows($stmt);
+	mysqli_stmt_close($stmt);
+	if ($res != 1) {
+		print_error( " function set_user_balance > ( res != 1) " );
+		return false;
+	}
+	return true;
+}
+
+
 //Вернет логин и баланс пользователя по id
 function get_user_by_id( $user_id ){
 	global $link;
@@ -9,6 +30,20 @@ function get_user_by_id( $user_id ){
 	return $user;
 }
 
+//Узнать баланс пользователя
+//Вернёт баланс или -1 если пользователя нет
+function get_user_balance( $user_id ){
+	global $link;
+	$sql = "SELECT balance FROM users WHERE id='$user_id'";
+	$result = mysqli_query($link, $sql);
+	if (mysqli_num_rows($result) === 0) {
+		print_error( " function get_user_balance > (mysqli_num_rows(result) === 0) " );
+		return -1;
+	}
+	$user = mysqli_fetch_array($result);
+	return $user["balance"];
+}
+
 //Проверить существует ли пользователь с указанным логином
 //Вернет true если пользователя нет
 function check_login( $login ){
@@ -16,6 +51,7 @@ function check_login( $login ){
 	$sql = "SELECT id FROM users WHERE login='$login'";
 	$result = mysqli_query($link, $sql) or die(mysqli_error());
 	if (mysqli_num_rows($result) > 0) {
+		print_error( " function check_login > (mysqli_num_rows(result) > 0) " );
 		return false;
 	}
 	return true;
@@ -57,9 +93,18 @@ function login_user( $login, $password ){
 	$result = mysqli_query($link, $sql);
 	$users = mysqli_fetch_array($result);
 	if (empty($users['id'])){
+		print_error("Не верный логин или пароль.");
 		return 0;
 	}
 	return $users['id'];
+}
+
+//Вывести текст ошибки на страницу
+function print_error( $str_error ){
+	echo "<span class='error_str'>";
+	echo "Server ERROR: ";
+	echo $str_error;
+	echo "</span>";
 }
 
 ?>

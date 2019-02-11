@@ -5,6 +5,13 @@
 	font-family: Arial, sans-serif;
 }
 
+.error_str {
+	border: 2px solid yellow;
+	background-color: red;
+	color: yellow;
+	padding: 2px;
+}
+
 body {
 	max-width: 840px;
 	min-width: 480px;
