@@ -23,7 +23,7 @@ include('../navbar.php');
 			<?php if( count($warriors) === 0): ?>
 				Ещё не создано ни одного бойца.
 			<?php else: ?>
-				<table id="warriors_table">
+				<table class="warriors_table" id="my_warriors_table_big">
 					<tr>
 						<th>Имя бойца</th>
 						<th>Жизнь</th>

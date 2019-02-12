@@ -7,7 +7,7 @@
 			<li><a href="/login/registration.php">Регистрация</a></li>
 		<?php else: ?>
 			<li><a href="/game/warriors.php">Бойцы</a></li>
-			<li><a href="#">Сразиться</a></li>
+			<li><a href="/game/select_apponent.php">Сразиться</a></li>
 			<li><a href="#">История</a></li>
 			<li><a href="/login/logout.php">Выход</a></li>
 		<?php endif ?>

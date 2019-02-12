@@ -148,7 +148,7 @@ footer{
 	margin-top: 60px;
 }
 
-#warriors_table {
+.warriors_table {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 	font-size: 14px;
 	border-radius: 10px;
@@ -161,7 +161,7 @@ footer{
 	box-shadow: 0 0 10px #777; 
 }
 
-#warriors_table th {
+.warriors_table th {
 	background: #555;
 	color: white;
 	text-shadow: 0 1px 1px #2D2020;
@@ -171,29 +171,64 @@ footer{
 	border-color: white;
 }
 
-#warriors_table td {
+.warriors_table td {
 	border-style: solid;
 	border-width: 0 1px 1px 0;
 	border-color: white;
 }
 
-#warriors_table td:first-child {
+.warriors_table td:first-child {
 	text-align: left;
 }
 
-#warriors_table th:first-child {
+.warriors_table th:first-child {
 	text-align: left;
 }
 
-#warriors_table th:last-child {
+.warriors_table th:last-child {
 	border-right: none;
 }
 
-#warriors_table td {
+.warriors_table td {
 	padding: 10px 20px;
 	background: #ddd;
 }
 
-#warriors_table tr td:last-child {
+.warriors_table tr td:last-child {
 	border-right: none;
+}
+
+.small_table th {
+	padding: 4px 4px;
+}
+
+.small_table td {
+	padding: 4px 4px;
+}
+
+#selection_form{
+	padding: 10px;
+	min-height: 400px;
+	margin: 20px;
+	padding-top: 30px;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 1.2em;
+}
+
+#my_warriors_form{
+	width: 50%;
+	float: left;
+}
+
+#apponents_form{
+	width: 40%;
+	float: right;
+}
+
+#my_warriors_table{
+	margin-top: 0px;
+}
+
+#apponents_table{
+	margin-top: 0px;
 }

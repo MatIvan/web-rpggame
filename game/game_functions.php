@@ -3,10 +3,19 @@
 // Вернёт таблицу со всеми бойцами пользователя.
 function get_user_warriors( $user_id ){
 	global $link;
-	$sql = "SELECT id, name, hp, attack, shield FROM warriors WHERE user_id=$user_id";
+	$sql = "SELECT id, name, hp, attack, shield, level FROM warriors WHERE user_id=$user_id";
 	$result = mysqli_query($link, $sql);
 	$warriors = mysqli_fetch_all($result, MYSQLI_ASSOC);
 	return $warriors;
+}
+
+// Вернёт таблицу со всеми возможными аппонентами.
+function get_user_apponents( $user_id ){
+	global $link;
+	$sql = "SELECT id, name, level FROM warriors WHERE user_id<>$user_id";
+	$result = mysqli_query($link, $sql);
+	$apponents = mysqli_fetch_all($result, MYSQLI_ASSOC);
+	return $apponents;
 }
 
 //Добавить нового бойца в БД
