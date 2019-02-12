@@ -45,7 +45,7 @@ include('../navbar.php');
 				</table>
 			<?php endif ?>
 			<form action="/game/new_warrior.php" method="post" id="btn_new_war">
-				<input type="submit" value="Создать нового бойца" />
+				<input class="btn" type="submit" value="Создать нового бойца" />
 			</form>
 		</section>
 	<?php endif ?>

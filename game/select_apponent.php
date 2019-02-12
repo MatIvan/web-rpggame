@@ -16,61 +16,52 @@ include('../navbar.php');
 			<br><br>
 		</section>
 	<?php else: ?>
-		<section class="form" id="selection_form">
-			<section id="my_warriors_form">
-				<?php 
-					$warriors = get_user_warriors( $_SESSION['user_id'] );
-				?>
-				<?php if( count($warriors) === 0): ?>
-					Ещё не создано ни одного бойца.
-				<?php else: ?>
-					<table class="warriors_table small_table" id="my_warriors_table">
-						Мои бойцы:
-						<tr>
-							<th>ID</th>
-							<th>Имя бойца</th>
-							<th>TTX</th>
-						</tr>
+		<form class="form"  id="selection_form" action="/game/BLABLA.php" method="post" >
+				<section class="list_warriors_form"  id="my_warriors_form">
+					<h2>Мои бойцы:</h2>
+					<?php 
+						$warriors = get_user_warriors( $_SESSION['user_id'] );
+					?>
+					<?php if( count($warriors) === 0): ?>
+						Ещё не создано ни одного бойца.
+					<?php else: ?>
 						<?php foreach($warriors as $warrior): ?>
-							<tr>
-								<td><?= $warrior["id"] ?></td>
-								<td><?= $warrior["name"] ?></td>
-								<td>
-									<?= $warrior["level"] ?> (
+							<div class="inputGroup">
+								<input class="radio-btn" id="warrior<?= $warrior["id"] ?>" name="id_warrior" type="radio" value="<?= $warrior["id"] ?>"/>
+								<label for="warrior<?= $warrior["id"] ?>">
+									<?= $warrior["name"] ?> ( 
+									<?= $warrior["level"] ?> /
 									<?= $warrior["hp"] ?> / 
 									<?= $warrior["attack"] ?> / 
 									<?= $warrior["shield"] ?> )
-								</td>
-							</tr>
+								</label>
+							</div>
 						<?php endforeach; ?>
-					</table>
-				<?php endif ?>
-			</section>
-			<section id="apponents_form">
-				<?php 
-					$apponents = get_user_apponents( $_SESSION['user_id'] );
-				?>
-				<?php if( count($apponents) === 0): ?>
-					Нет подходящих аппонентов.
-				<?php else: ?>
-					<table class="warriors_table small_table" id="apponents_table">
-						Аппоненты:
-						<tr>
-							<th>ID</th>
-							<th>Имя бойца</th>
-							<th>Уровень</th>
-						</tr>
+					<?php endif ?>
+				</section>
+				<section class="list_warriors_form" id="apponents_form">
+					<h2>Аппоненты:</h2>
+					<?php 
+						$apponents = get_user_apponents( $_SESSION['user_id'] );
+					?>
+					<?php if( count($apponents) === 0): ?>
+						Нет подходящих аппонентов.
+					<?php else: ?>
 						<?php foreach($apponents as $apponent): ?>
-							<tr>
-								<td><?= $apponent["id"] ?></td>
-								<td><?= $apponent["name"] ?></td>
-								<td><?= $apponent["level"] ?></td>
-							</tr>
+							<div class="inputGroup">
+								<input class="radio-btn" id="apponent<?= $apponent["id"] ?>" name="id_apponent" type="radio" value="<?= $apponent["id"] ?>"/>
+								<label for="apponent<?= $apponent["id"] ?>">
+									<?= $apponent["name"] ?> ( 
+									<?= $apponent["level"] ?> )
+								</label>
+							</div>
 						<?php endforeach; ?>
-					</table>
-				<?php endif ?>
+					<?php endif ?>
+				</section>
+			<section class="nav-block">
+				<input class="btn" type="submit" value="НАЧАТЬ СРАЖЕНИЕ" />
 			</section>
-		</section>
+		</form>
 	<?php endif ?>
 
 	

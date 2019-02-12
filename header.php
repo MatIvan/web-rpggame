@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>RPG web game.</title>
     <link rel="stylesheet" href="/css/main-style.css">
+	<link rel="stylesheet" href="/css/flat-radio-btn.css">
 </head>
 <body>
    

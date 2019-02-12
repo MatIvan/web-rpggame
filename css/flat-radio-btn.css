@@ -1,0 +1,65 @@
+#selection_form{
+	padding: 10px;
+	min-height: 400px;
+	margin: 20px;
+	padding-top: 30px;
+}
+
+#selection_form h2{
+	margin-left: 10px;
+	margin-top: 6px;
+}
+
+.list_warriors_form {
+	border-radius: 2px;
+	width: 45%;
+	margin-top: 20px;
+	box-shadow: 0 0 10px #777; 
+	text-align: left;
+}
+
+#my_warriors_form {
+	float: left;
+	margin-left: 20px;
+	width: 45%;
+}
+
+#apponents_form {
+	float: right;
+	margin-right: 20px;
+	width: 45%;
+}
+
+.nav-block{
+	width: 100%;
+	float: left;
+	margin-top: 20px;
+}
+
+.inputGroup label {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 0.9em;
+	display: block;
+	cursor: pointer;
+	width: 96%;
+	margin: 4px;
+    padding: 2px;
+    border: 1px solid #777;
+    background: #ddd;
+}
+
+.radio-btn {
+  display: none;
+}
+
+.list_warriors_form input:checked + label {
+    background: #555;
+    box-shadow: inset 0 0 10px #fff; 
+	color: #eee;
+	text-shadow: 0 1px 1px #2D2020;
+	font-size: 0.85em;
+}
+
+
+
+
