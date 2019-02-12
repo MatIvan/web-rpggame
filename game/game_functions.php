@@ -13,14 +13,16 @@ function get_user_warriors( $user_id ){
 //True если успех, иначе False
 function add_new_warrior( $new_warrior){
 	global $link;
-	$stmt  = mysqli_prepare( $link, "INSERT INTO warriors ( name, hp, attack, shield, user_id ) VALUES (?,?,?,?,?)" );
+	$new_level = ( $new_warrior["hp"] + $new_warrior["attack"] + $new_warrior["shield"] );
+	$stmt  = mysqli_prepare( $link, "INSERT INTO warriors ( name, hp, attack, shield, user_id, level ) VALUES (?,?,?,?,?,?)" );
 	mysqli_stmt_bind_param($stmt,
-		"siiii",
+		"siiiii",
 		$new_warrior["name"],
 		$new_warrior["hp"],
 		$new_warrior["attack"],
 		$new_warrior["shield"],
-		$new_warrior["user_id"]
+		$new_warrior["user_id"],
+		$new_level
 	);
 	mysqli_stmt_execute($stmt);
 	$res = mysqli_stmt_affected_rows($stmt);
@@ -48,13 +50,15 @@ function get_warrior_by_id( $warrior_id ){
 //Изменить бойца в БД
 function edit_warrior( $warrior ){
 	global $link;
-	$stmt  = mysqli_prepare( $link, "UPDATE warriors SET name = ?, hp = ?, attack = ?, shield = ? WHERE warriors.id = ?" );
+	$new_level = ( $warrior["hp"] + $warrior["attack"] + $warrior["shield"] );
+	$stmt  = mysqli_prepare( $link, "UPDATE warriors SET name = ?, hp = ?, attack = ?, shield = ?, level = ? WHERE warriors.id = ?" );
 	mysqli_stmt_bind_param($stmt,
-		"siiii",
+		"siiiii",
 		$warrior["name"],
 		$warrior["hp"],
 		$warrior["attack"],
 		$warrior["shield"],
+		$new_level,
 		$warrior["id"]
 	);
 	mysqli_stmt_execute($stmt);

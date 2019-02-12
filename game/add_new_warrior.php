@@ -42,7 +42,7 @@ include('../navbar.php');
 							echo "Вы успешно создали нового бойца!";
 						}
 					}else{
-						if ( edit_warrior( $new_warrior ) === 0 ){
+						if ( edit_warrior( $new_warrior ) === false ){
 							echo "Что-то пошло не так: Боец не был изменен!!!";
 						}else{
 							echo "Вы успешно изменили бойца!";
