@@ -1,0 +1,14 @@
+.all-forms__btn{
+	font-size: 0.9em;
+	border: 1px solid black;
+	box-shadow: inset 0 0 10px #555; 
+	height: 2em;
+	text-align: center;
+	border-radius: 4px;
+}
+
+.all-forms__btn:hover {
+	box-shadow: inset 0 0 40px #333; 
+	background-color: 	#777;
+	color: #fff;
+}

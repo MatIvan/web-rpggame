@@ -3,8 +3,8 @@ include('../header.php');
 include('../navbar.php');
 ?>
 
-<main>
-	<div class="caption">
+<main class="main-block">
+	<div class="main-block__caption">
 	Выбор аппонента:
 	</div>
 	
@@ -58,6 +58,7 @@ include('../navbar.php');
 						<?php endforeach; ?>
 					<?php endif ?>
 				</section>
+			<div style="clear: both;">&nbsp;</div>
 			<section class="nav-block">
 				<input class="btn" type="submit" value="НАЧАТЬ СРАЖЕНИЕ" />
 			</section>

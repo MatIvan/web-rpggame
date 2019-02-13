@@ -1,0 +1,10 @@
+.navbar{
+	border: none;
+	height: 1.8em;
+	padding-top: 4px;
+	text-align: left;
+}
+
+.navbar :last-child {
+	border-right: 1px solid black;/*#D3D3D3;*/
+}

@@ -1,0 +1,10 @@
+.navbar__a{
+	color: black;
+	text-decoration: none;
+	padding: 0px 10px;
+	border-left: 1px solid black;/*#D3D3D3;*/
+}
+
+.navbar__a:hover{
+	text-decoration: underline;
+}

@@ -3,8 +3,8 @@ include('../header.php');
 include('../navbar.php');
 ?>
 
-<main>
-	<div class="caption">
+<main class="main-block">
+	<div class="main-block__caption">
 	Создание нового бойца:
 	</div>
 
