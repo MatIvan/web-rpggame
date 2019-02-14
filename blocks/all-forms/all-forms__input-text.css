@@ -1,9 +1,6 @@
 .all-forms__input-text {
 	border: 1px solid black;
 	box-shadow: inset 0 0 10px #555; 
-	width: 80%;
-	margin: auto;
-	margin-top: 0.4em;
 	height: 1.4em;
 	padding:3px;
 	text-align: center;

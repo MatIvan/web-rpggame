@@ -93,7 +93,7 @@ function login_user( $login, $password ){
 	$result = mysqli_query($link, $sql);
 	$users = mysqli_fetch_array($result);
 	if (empty($users['id'])){
-		print_error("Не верный логин или пароль.");
+		//print_error("Не верный логин или пароль.");
 		return 0;
 	}
 	return $users['id'];
@@ -101,8 +101,8 @@ function login_user( $login, $password ){
 
 //Вывести текст ошибки на страницу
 function print_error( $str_error ){
-	echo "<span class='error_str'>";
-	echo "Server ERROR: ";
+	echo "<span class='error-msg'>";
+	echo "Server ERROR:";
 	echo $str_error;
 	echo "</span>";
 }

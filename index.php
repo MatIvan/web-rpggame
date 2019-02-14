@@ -10,8 +10,8 @@ include('navbar.php');
 	<?php if( empty($_SESSION['user_id']) ): ?>
 		<form class="all-forms all-forms_login-form" action="login/login.php" method="POST">
 			<div class="all-forms__caption">Вход:</div>
-			<input class="all-forms__input-text" type="text" name="login" placeholder="Логин">
-			<input class="all-forms__input-text"type="password" name="password" placeholder="Пароль">
+			<input class="all-forms__input-text all-forms__input-text_center" type="text" name="login" placeholder="Логин">
+			<input class="all-forms__input-text all-forms__input-text_center"type="password" name="password" placeholder="Пароль">
 			<input class="all-forms__btn all-forms__btn_center" type="submit" value="OK" name="submit" >
 		</form>
 		<div class="navbar navbar_center">
@@ -24,6 +24,7 @@ include('navbar.php');
 			</div>
 			<div>
 				на балансе: <strong> <?= $_SESSION['user_balance'] ?> </strong> очков.
+				<br><br>
 			</div>
 			<div class="navbar navbar_center">
 				<a class="navbar__a" href="/game/warriors.php">Показать моих бойцов</a>

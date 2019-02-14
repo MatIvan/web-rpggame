@@ -7,24 +7,21 @@ include('../navbar.php');
 	<div class="main-block__caption">
 		Регистрация нового пользователя.
 	</div>
-	
-	<section class="form" id="registration_form">
+	<form class="all-forms all-forms_login-form">
 		<?php if( empty($_SESSION['user_id']) ) : ?>
-			<div class="caption">Анкета:</div>
-			<form action="new_user.php" method="POST">
-				<input type="text" name="login" placeholder="Логин">
-				<input type="password" name="password" placeholder="Пароль">
-				<input type="password" name="password2" placeholder="Повторите пароль">
-				<br><br>
-				<input class="btn" type="submit" value="Зарегистрировать" name="submit" >
+			<form class="all-forms all-forms_login-form" action="new_user.php" method="POST">
+				<div class="all-forms__caption">Анкета:</div>			
+				<input class="all-forms__input-text all-forms__input-text_center" type="text" name="login" placeholder="Логин">
+				<input class="all-forms__input-text all-forms__input-text_center" type="password" name="password" placeholder="Пароль">
+				<input class="all-forms__input-text all-forms__input-text_center" type="password" name="password2" placeholder="Повторите пароль">
+				<input class="all-forms__btn all-forms__btn_center" type="submit" value="Зарегистрировать" name="submit" >
 			</form>
-			<br>
 		<?php else: ?>
 			<?php 
-			include("welcome_form.php");
+			echo "<meta http-equiv='Refresh' content='0; URL=/index.php'>";
 			?>
 		<?php endif ?>
-	</section>
+	</form>
 </main>
 
 <?php

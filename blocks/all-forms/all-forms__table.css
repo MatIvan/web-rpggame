@@ -1,0 +1,54 @@
+.all-forms__table{
+	border-radius: 10px;
+	border-spacing: 0;
+	text-align: center;
+	box-shadow: 0 0 10px #777; 
+	font-size: 0.9em;
+}
+
+.all-forms__table__td:first-child {
+	text-align: left;
+}
+
+
+.all-forms__table__th {
+	background: #555;
+	color: white;
+	padding: 4px 8px;
+	border-style: solid;
+	border-width: 0 1px 1px 0;
+	border-color: white;
+}
+
+.all-forms__table__th:first-child {
+	border-radius: 10px 0 0 0;
+}
+
+.all-forms__table__th:last-child {
+	border-right: none;
+	border-radius: 0 10px 0 0;
+}
+
+.all-forms__table__td {
+	border-style: solid;
+	border-width: 0 1px 1px 0;
+	border-color: white;
+	padding: 8px 12px;
+	background: #ddd;
+}
+
+.all-forms__table__td:last-child {
+	border-right: none;
+}
+
+.all-forms__table__tr:last-child .all-forms__table__td{
+	border-bottom: none;
+}
+
+.all-forms__table__tr:last-child.all-forms__table__td:first-child {
+	border-radius: 0 0 0 10px;
+}
+
+.all-forms__table__tr:last-child.all-forms__table__td:last-child {
+	border-radius: 0 0 10px 0;
+}

@@ -8,7 +8,8 @@ include('../navbar.php');
 	Создание нового бойца:
 	</div>
 
-	<section class="form" id="new_warrior">
+	<form class="all-forms all-forms_login-form">
+		<div class='all-forms__caption'>
 		<?php
 		if (isset($_POST['submit'])){
 			if(empty($_POST['name']))  {
@@ -58,10 +59,12 @@ include('../navbar.php');
 		}
 		
 		?>
+		</div>
 		<br><br>
-		<a href="/game/warriors.php">Вернуться к бойцам</a>
-		<br><br>
-	</section>
+		<div class="navbar navbar_center">
+			<a class="navbar__a" href="/game/warriors.php">Вернуться к бойцам</a>
+		</div>
+	</form>
 </main>
 
 <?php

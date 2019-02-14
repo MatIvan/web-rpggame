@@ -5,21 +5,20 @@ include('../navbar.php');
 
 <main class="main-block">
 	<div class="main-block__caption">
-	Ошибка авторизации:
+		Ошибка авторизации:
 	</div>
-
-	<section class="form" id="login_error_form">
+	<form class="all-forms all-forms_login-form">
 		<?php
 		if ( isset($_POST['login']) and isset($_POST['password']) ) {
 			if ( $_POST['login'] =='' or $_POST['password'] == '' ) {
-				echo "<br><br>Введите пожалуйста логин и пароль!";
+				echo "<div class='all-forms__caption'>Введите логин и пароль.</div>";
 			} else {
 				$_SESSION['user_id']=login_user( $_POST['login'], $_POST['password']);
 				if ($_SESSION['user_id']==0){
 					unset($_SESSION['user_id']);
 					unset($_SESSION['user_login']);
 					unset($_SESSION['user_balance']);
-					echo "<br><br>Извините, введённый вами логин или пароль неверный.";
+					echo "<div class='all-forms__caption'>Логин или пароль неверный.</div>";
 				}
 				else {
 					$user = get_user_by_id( $_SESSION['user_id'] );
@@ -29,13 +28,13 @@ include('../navbar.php');
 				}
 			}
 		}else{
-			echo "<br><br>Нет логина или пароля!";
+			echo "<div class='all-forms__caption'>Введите логин и пароль.</div>";
 		}
 		?>
-		<br><br>
-		<a href="/index.php">Вернуться на главную</a>
-		<br><br>
-	</section>
+		<div class="navbar navbar_center">
+			<a class="navbar__a" href="/index.php">Вернуться на главную</a>
+		</div>
+	</form>
 </main>
 
 <?php

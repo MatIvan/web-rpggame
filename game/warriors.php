@@ -4,50 +4,52 @@ include('../navbar.php');
 ?>
 
 <main class="main-block">
-	<div class="main-block__caption">
-	Бойцы:
-	</div>
+	
 	
 	<?php if( empty($_SESSION['user_id']) ): ?>
-		<section class="form" id="login_error_form">
-			Необходимо войти на сайт.";
-			<br><br>
-			<a href="/index.php">Вернуться на главную</a>
-			<br><br>
-		</section>
+		<form class="all-forms all-forms_login-form">
+			<div class="all-forms__caption">
+				Необходимо войти на сайт.
+			</div>
+			<div class="navbar navbar_center">
+				<a class="navbar__a" href="/index.php">Вернуться на главную</a>
+			</div>
+		</form>
 	<?php else: ?>
-		<section class="form" id="warriors_form">
+		<form class="all-forms all-forms_warriors-form" action="/game/new_warrior.php" method="post">
+			<div class="all-forms__caption">
+				Бойцы:
+			</div>
+	
 			<?php 
 				$warriors = get_user_warriors( $_SESSION['user_id'] );
 			?>
 			<?php if( count($warriors) === 0): ?>
 				Ещё не создано ни одного бойца.
 			<?php else: ?>
-				<table class="warriors_table" id="my_warriors_table_big">
-					<tr>
-						<th>Имя бойца</th>
-						<th>Жизнь</th>
-						<th>Атака</th>
-						<th>Защита</th>
-						<th>#</th>
-						<th>#</th>
+				<table class="all-forms__table all-forms__table_center">
+					<tr class="all-forms__table__tr">
+						<th class="all-forms__table__th">Имя бойца</th>
+						<th class="all-forms__table__th">Жизнь</th>
+						<th class="all-forms__table__th">Атака</th>
+						<th class="all-forms__table__th">Защита</th>
+						<th class="all-forms__table__th">#</th>
+						<th class="all-forms__table__th">#</th>
 					</tr>
 					<?php foreach($warriors as $warrior): ?>
-						<tr>
-							<td><?= $warrior["name"] ?></td>
-							<td><?= $warrior["hp"] ?></td>
-							<td><?= $warrior["attack"] ?></td>
-							<td><?= $warrior["shield"] ?></td>
-							<td><a href="/game/new_warrior.php?id=<?= $warrior["id"] ?>">edit<a></td>
-							<td>в бой</td>
+						<tr class="all-forms__table__tr">
+							<td class="all-forms__table__td"><?= $warrior["name"] ?></td>
+							<td class="all-forms__table__td"><?= $warrior["hp"] ?></td>
+							<td class="all-forms__table__td"><?= $warrior["attack"] ?></td>
+							<td class="all-forms__table__td"><?= $warrior["shield"] ?></td>
+							<td class="all-forms__table__td"><a href="/game/new_warrior.php?id=<?= $warrior["id"] ?>">edit<a></td>
+							<td class="all-forms__table__td">в бой</td>
 						</tr>
 					<?php endforeach; ?>
 				</table>
 			<?php endif ?>
-			<form action="/game/new_warrior.php" method="post" id="btn_new_war">
-				<input class="btn" type="submit" value="Создать нового бойца" />
-			</form>
-		</section>
+			<input class="all-forms__btn all-forms__btn_center" type="submit" value="Создать нового бойца" name="submit" >
+		</form>
 	<?php endif ?>
 
 	

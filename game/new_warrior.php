@@ -13,15 +13,17 @@ include('../navbar.php');
 	</div>
 	
 	<?php if( empty($_SESSION['user_id']) ): ?>
-		<section class="form" id="login_error_form">
-			Необходимо войти на сайт.";
-			<br><br>
-			<a href="/index.php">Вернуться на главную</a>
-			<br><br>
-		</section>
+		<form class="all-forms all-forms_login-form">
+			<div class="all-forms__caption">
+				Необходимо войти на сайт.
+			</div>
+			<div class="navbar navbar_center">
+				<a class="navbar__a" href="/index.php">Вернуться на главную</a>
+			</div>
+		</form>
 	<?php else: ?>
-		<section class="form" id="new_warrior">
-			<div class="caption">Укажите характеристики:</div>
+		<form class="all-forms all-forms_login-form" action="add_new_warrior.php" method="post">
+			<div class="all-forms__caption">Укажите характеристики:</div>
 			<?php 
 				if (isset($_GET["id"])){
 					$warrior = get_warrior_by_id( $_GET["id"] );
@@ -37,17 +39,13 @@ include('../navbar.php');
 					$bnt_val="Создать";
 				}
 			?>
-			<form action="add_new_warrior.php" method="POST">
-				<input hidden="true" type="text" name="id" value= <?= $warrior["id"] ?>  >
-				<input type="text" name="name" placeholder="Имя бойца" value= <?= $warrior["name"] ?> >
-				<input type="text" name="hp" placeholder="Жизнь" value= <?= $warrior["hp"] ?> >
-				<input type="text" name="attack" placeholder="Атака" value= <?= $warrior["attack"] ?> >
-				<input type="text" name="shield" placeholder="Защита" value= <?= $warrior["shield"] ?> >
-				<br><br>
-				<input class="btn" type="submit" value="<?= $bnt_val ?>" name="submit" >
-			</form>
-			<br>
-		</section>
+			<input hidden="true" type="text" name="id" value= <?= $warrior["id"] ?>  >
+			<input class="all-forms__input-text all-forms__input-text_center" type="text" name="name" placeholder="Имя бойца" value= <?= $warrior["name"] ?> >
+			<input class="all-forms__input-text all-forms__input-text_center" type="text" name="hp" placeholder="Жизнь" value= <?= $warrior["hp"] ?> >
+			<input class="all-forms__input-text all-forms__input-text_center" type="text" name="attack" placeholder="Атака" value= <?= $warrior["attack"] ?> >
+			<input class="all-forms__input-text all-forms__input-text_center" type="text" name="shield" placeholder="Защита" value= <?= $warrior["shield"] ?> >
+			<input class="all-forms__btn all-forms__btn_center" type="submit" value="<?= $bnt_val ?>" name="submit" >
+		</form>
 	<?php endif ?>
 </main>
 
