@@ -1,0 +1,33 @@
+.warrior-str{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    height: 18px;
+    text-align: left;
+    width: 289px;
+}
+.warrior-str__element{
+    padding-left: 6px;
+    margin-right: 2px;
+}
+
+.warrior-str__element_name{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.warrior-str__element__img{
+    width: 16px;
+    height: 16px;
+    border: none;
+}
+
+.warrior-str__element__txt{
+    width: 20px;
+    font-size: 12px;
+}
+
+.warrior-str_left{
+    float: left;
+}
+.warrior-str_right{
+    float:right;
+}

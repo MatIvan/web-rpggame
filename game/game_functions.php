@@ -115,4 +115,5 @@ function calculate_balance($new_warrior){
 	return $new_balance;
 }
 
+
 ?>

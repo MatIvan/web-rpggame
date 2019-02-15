@@ -99,12 +99,6 @@ function login_user( $login, $password ){
 	return $users['id'];
 }
 
-//Вывести текст ошибки на страницу
-function print_error( $str_error ){
-	echo "<span class='error-msg'>";
-	echo "Server ERROR:";
-	echo $str_error;
-	echo "</span>";
-}
+
 
 ?>

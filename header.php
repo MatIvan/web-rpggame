@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	require_once("login/db-connect.php");
+	require_once("common-functions.php");
 	require_once("login/login_functions.php");
 	require_once("game/game_functions.php");
 ?>
@@ -43,6 +44,8 @@
 	
 	<link rel="stylesheet" href="/blocks/all-forms/all-forms__table.css">
 	<link rel="stylesheet" href="/blocks/all-forms/all-forms__table_center.css">
+
+	<link rel="stylesheet" href="/blocks/warrior-str/warrior-str.css">
 	
 </head>
 <body>

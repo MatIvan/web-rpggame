@@ -18,7 +18,7 @@ include('../navbar.php');
 			</div>
 		</form>
 	<?php else: ?>
-		<form class="all-forms all-forms_warriors-form" action="/game/BLABLA.php" method="post">
+		<form class="all-forms all-forms_warriors-form" action="/game/battle.php" method="post">
 			<section class="list_warriors_form"  id="my_warriors_form">
 				<h2>Мои бойцы:</h2>
 				<?php 
@@ -31,11 +31,7 @@ include('../navbar.php');
 						<div class="inputGroup">
 							<input class="radio-btn" id="warrior<?= $warrior["id"] ?>" name="id_warrior" type="radio" value="<?= $warrior["id"] ?>"/>
 							<label for="warrior<?= $warrior["id"] ?>">
-								<?= $warrior["name"] ?> ( 
-								<?= $warrior["level"] ?> /
-								<?= $warrior["hp"] ?> / 
-								<?= $warrior["attack"] ?> / 
-								<?= $warrior["shield"] ?> )
+							<?= get_html_warrior_string( $warrior ) ?>
 							</label>
 						</div>
 					<?php endforeach; ?>
@@ -53,8 +49,9 @@ include('../navbar.php');
 						<div class="inputGroup">
 							<input class="radio-btn" id="apponent<?= $apponent["id"] ?>" name="id_apponent" type="radio" value="<?= $apponent["id"] ?>"/>
 							<label for="apponent<?= $apponent["id"] ?>">
-								<?= $apponent["name"] ?> ( 
-								<?= $apponent["level"] ?> )
+								<?= get_html_warrior_string( $apponent ) ?>
+<!-- 								<?= $apponent["name"] ?> ( 
+								<?= $apponent["level"] ?> ) -->
 							</label>
 						</div>
 					<?php endforeach; ?>
