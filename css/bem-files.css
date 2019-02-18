@@ -1,0 +1,26 @@
+/* Подключем css файлы по методике BEM */
+@import "../blocks/error-msg/error-msg.css";
+@import "../blocks/main-header/main-header.css";
+@import "../blocks/error-msg/error-msg.css";
+@import "../blocks/main-block/main-block.css";
+@import "../blocks/main-block/main-block__caption.css";
+@import "../blocks/main-footer/main-footer.css";
+@import "../blocks/all-forms/all-forms.css";
+@import "../blocks/all-forms/all-forms__caption.css";
+@import "../blocks/all-forms/all-forms_login-form.css";
+@import "../blocks/all-forms/all-forms__input-text.css";
+@import "../blocks/all-forms/all-forms__input-text_center.css";
+@import "../blocks/all-forms/all-forms__btn.css";
+@import "../blocks/all-forms/all-forms__btn_center.css";
+@import "../blocks/navbar/navbar.css";
+@import "../blocks/navbar/navbar_center.css";
+@import "../blocks/navbar/navbar__a.css";
+@import "../blocks/all-forms/all-forms_warriors-form.css";
+@import "../blocks/all-forms/all-forms__table.css";
+@import "../blocks/all-forms/all-forms__table_center.css";
+@import "../blocks/warrior-str/warrior-str.css";
+@import "../blocks/all-forms/all-forms_warrior.css";
+@import "../blocks/warrior-data/warrior-data.css";
+@import "../blocks/battle-form/battle-form.css";
+@import "../blocks/battle-form/battle-form__versus.css";
+
