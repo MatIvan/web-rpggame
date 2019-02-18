@@ -34,7 +34,19 @@ include('../navbar.php');
 		message_box( "Аппонент не найден в БД.", "/game/select_apponent.php", "Назад" ); 
 		alarm_exit();
 	}
+	$warrior_show = $warrior;
+	include("warrior_big_form.php");
+	
 	?>
+	<div class="versus">
+		<img style="float: left;" src='/img/versus.png' alt="VERSUS">
+	</div>
+
+	<?php
+		$warrior_show = $apponent;
+		include("warrior_big_form.php");
+	?>
+
 	<!-- Рассчитать сражение -->
 
 	<!-- Записать результаты в БД -->

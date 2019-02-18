@@ -30,9 +30,9 @@ include('../navbar.php');
 				<table class="all-forms__table all-forms__table_center">
 					<tr class="all-forms__table__tr">
 						<th class="all-forms__table__th">Имя бойца</th>
-						<th class="all-forms__table__th">Жизнь</th>
-						<th class="all-forms__table__th">Атака</th>
-						<th class="all-forms__table__th">Защита</th>
+						<th class="all-forms__table__th"><img class='warrior-str__element__img' src='/img/hp16.png'>Жизнь</th>
+						<th class="all-forms__table__th"><img class='warrior-str__element__img' src='/img/attack16.png'>Атака</th>
+						<th class="all-forms__table__th"><img class='warrior-str__element__img' src='/img/shield16.png'>Защита</th>
 						<th class="all-forms__table__th">#</th>
 						<th class="all-forms__table__th">#</th>
 					</tr>

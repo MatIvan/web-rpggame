@@ -46,6 +46,9 @@
 	<link rel="stylesheet" href="/blocks/all-forms/all-forms__table_center.css">
 
 	<link rel="stylesheet" href="/blocks/warrior-str/warrior-str.css">
+
+	<link rel="stylesheet" href="/blocks/all-forms/all-forms_warrior.css">
+	<link rel="stylesheet" href="/blocks/warrior-data/warrior-data.css">
 	
 </head>
 <body>
