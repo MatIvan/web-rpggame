@@ -47,36 +47,76 @@ include('../navbar.php');
 			include("warrior_big_form.php");
 			echo("</div>");
 		?>
-		<div style="clear: both;">&nbsp;</div>
+		<div style="clear: left;"></div>
 
 		<!-- Рассчитать сражение -->
 		<?php
-		$hit_by_war_damage = ( $warrior["attack"] * $warrior["attack"] ) / ( $warrior["attack"] + $apponent["shield"] );
-		$hit_by_war_damage = round($hit_by_war_damage, 0);
-		$hit_by_war_with_fine = $hit_by_war_damage * ( ( ( $apponent["level"] - $warrior["level"]) / $apponent["level"] ) +1 );
-		$hit_by_war_with_fine = round($hit_by_war_with_fine, 0);
-		$hit_by_war_only_fine = $hit_by_war_damage - $hit_by_war_with_fine;
-		echo("Нападаешь с уроном ".$hit_by_war_damage." за каждый удар. Штраф разницы уровня ".$hit_by_war_only_fine.". Защитано дамага ".$hit_by_war_with_fine."<br>");
-		
-		$hit_by_app_damage = ( $apponent["attack"] * $apponent["attack"] ) / ( $apponent["attack"] + $warrior["shield"] );
-		$hit_by_app_damage = round($hit_by_app_damage, 0);
-		$hit_by_app_with_fine = $hit_by_app_damage * ( ( ( $warrior["level"] - $apponent["level"]) / $warrior["level"] ) +1 );
-		$hit_by_app_with_fine = round($hit_by_app_with_fine, 0);
-		$hit_by_app_only_fine = $hit_by_app_damage - $hit_by_app_with_fine;
-		echo("Защищается с уроном ".$hit_by_app_damage." за каждый удар. Штраф разницы уровня ".$hit_by_app_only_fine.". Защитано дамага ".$hit_by_app_with_fine."<br>");
+			/* Для нападающего */
+			$hit_by_war_damage = ( $warrior["attack"] * $warrior["attack"] ) / ( $warrior["attack"] + $apponent["shield"] );
+			$hit_by_war_only_fine = ( ( ( $apponent["level"] - $warrior["level"]) / $apponent["level"] ) + 1 );
+			$hit_by_war_with_fine = $hit_by_war_damage * $hit_by_war_only_fine;
+			if ($hit_by_war_with_fine<0) $hit_by_war_with_fine = 0; //Урон не может быть отрицательным
 
-		$num_hits_war = $apponent["hp"] / $hit_by_war_with_fine;
-		$num_hits_app = $warrior["hp"] / $hit_by_app_with_fine;
-		$num_hits_war = round($num_hits_war, 0);
-		$num_hits_app = round($num_hits_app, 0);
+			/* Для защищающегося */
+			$hit_by_app_damage = ( $apponent["attack"] * $apponent["attack"] ) / ( $apponent["attack"] + $warrior["shield"] );
+			$hit_by_app_only_fine = ( ( ( $warrior["level"] - $apponent["level"]) / $warrior["level"] ) + 1 );
+			if ( $hit_by_app_only_fine<0 ) $hit_by_app_only_fine = -$hit_by_app_only_fine; //Аппоненту ставится только положительный бонус от разницы в уровнях
+			$hit_by_app_with_fine = $hit_by_app_damage * $hit_by_app_only_fine;
 
-		echo("Количество ударов до смерти аппонента: ".$num_hits_war."<br>");
-		echo("Количество ударов до смерти вашего война: ".$num_hits_app."<br>");
+			/* Длительность сражения */
+			$num_hits_war = $hit_by_war_with_fine>0 ? $apponent["hp"] / $hit_by_war_with_fine : 0 ;
+			$num_hits_app = $hit_by_app_with_fine>0 ? $warrior["hp"]  / $hit_by_app_with_fine : 0 ;
+			$num_hits_war = ceil($num_hits_war);
+			$num_hits_app = ceil($num_hits_app);
 		?>
+		
+		<!-- Вывод лога -->
+		<div class="battle-form__log">
+			<div class="battle-form__log_text battle-form__log_left">
+				Нападаешь с уроном <span class="_blue">	<?=round($hit_by_war_damage,2)?> </span> за каждый удар. <br>
+				<?=$hit_by_war_only_fine>0?"Бонус":"Штраф"?> разницы уровня <span class=" <?=$hit_by_war_only_fine>0?"_green":"_red"?>"><?=round($hit_by_war_only_fine*100,2)?></span>% <br>
+				Защитано дамага <span class="<?=$hit_by_war_with_fine<$hit_by_war_damage?"_red":"_green"?>"><?=round($hit_by_war_with_fine,2)?></span>.<br>
+				Количество ударов до победы: <span class="_blue"><?=$num_hits_war?></span>.<br>
+			</div>
+			<div class="battle-form__log_text battle-form__log_right">
+				Защищается с уроном <span class="_blue"> <?=round($hit_by_app_damage,2)?> </span> за каждый удар. <br>
+				<?=$hit_by_app_only_fine>0?"Бонус":"Штраф"?> разницы уровня <span class=" <?=$hit_by_app_only_fine>0?"_green":"_red"?>"><?=round($hit_by_app_only_fine*100,2)?></span>% <br>
+				Защитано дамага <span class="<?=$hit_by_app_with_fine<$hit_by_app_damage?"_red":"_green"?>"><?=round($hit_by_app_with_fine,2)?></span>.<br>
+				Количество ударов до победы: <span class="_blue"><?=$num_hits_app?></span>.<br>
+			</div>
+		</div>
+		
+		<div style="clear: both;"></div>
+		<div class="all-forms__caption">
+			<?php
+			if( $num_hits_war == 0 || $num_hits_app == 0  ){
+				if ( max( $num_hits_war, $num_hits_app)>10 ){
+					echo("Бой больше 10 ударов. Противники устали. <br>");
+					if ( $num_hits_war < $num_hits_app ) {
+						echo("Нападавший убежал.");
+					}else{
+						echo("Аппонент убежал.");
+					}
+				}
+			}else{
+				echo("Бой закончился. <br>");
+				if ( $num_hits_war > $num_hits_app ) {
+					echo("<span class='_red'>Ваш боец проиграл.</span>");
+				}else{
+					echo("<span class='_green'>ВЫ ВЫИГРАЛИ !!!</span>");
+				}
+			}
+			?>
+		</div>
 
 		<!-- Записать результаты в БД -->
 
 		<!-- Записать лог боя в БД -->
+
+		<div class="navbar navbar_center">
+			<a class="navbar__a" href="/game/select_apponent.php">Найти ещё аппонента</a>
+		</div>
+		<br><br>
 	</div>
 </main>
 

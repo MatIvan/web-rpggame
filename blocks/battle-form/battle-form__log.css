@@ -1,0 +1,35 @@
+.battle-form__log{
+    width: 585px;
+    margin: auto;
+    padding-top: 10px;
+}
+
+.battle-form__log_text{
+    font-size: 70%;
+    width: 49%;
+    /* border: 1px solid green; */
+}
+
+.battle-form__log_left{
+    float: left;
+}
+
+.battle-form__log_right{
+    text-align: right;
+    float: right;
+}
+
+._red{
+    font-weight:bold;
+    color:red;
+}
+
+._green{
+    font-weight:bold;
+    color:green;
+}
+
+._blue{
+    font-weight:bold;
+    color:blue;
+}
