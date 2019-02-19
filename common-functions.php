@@ -24,6 +24,7 @@ function message_box( $str_message, $back_url, $back_text ){
 function alarm_exit(){
     echo "</main>";
     include('/footer.php');
+    exit();
 }
 
 

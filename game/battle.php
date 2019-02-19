@@ -51,22 +51,27 @@ include('../navbar.php');
 
 		<!-- Рассчитать сражение -->
 		<?php
-		$max_steps = 10;
-		while ( $warrior["hp"]>0 && $apponent["hp"]>0 && $max_steps>0 ) {
-			$max_steps--;
-			
-			$hit_w_a = $warrior["attack"] - ( ($apponent["shield"] * $apponent["shield"] ) / $warrior["attack"] );
-			$hit_a_w = $apponent["attack"] - ( ($warrior["shield"] * $warrior["shield"] ) / $apponent["attack"] );
-			$hit_w_a = round($hit_w_a, 0);
-			$hit_a_w = round($hit_a_w, 0);
-			if($hit_w_a<1) $hit_w_a=1;
-			if($hit_a_w<1) $hit_a_w=1;
-			
-			!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		$hit_by_war_damage = ( $warrior["attack"] * $warrior["attack"] ) / ( $warrior["attack"] + $apponent["shield"] );
+		$hit_by_war_damage = round($hit_by_war_damage, 0);
+		$hit_by_war_with_fine = $hit_by_war_damage * ( ( ( $apponent["level"] - $warrior["level"]) / $apponent["level"] ) +1 );
+		$hit_by_war_with_fine = round($hit_by_war_with_fine, 0);
+		$hit_by_war_only_fine = $hit_by_war_damage - $hit_by_war_with_fine;
+		echo("Нападаешь с уроном ".$hit_by_war_damage." за каждый удар. Штраф разницы уровня ".$hit_by_war_only_fine.". Защитано дамага ".$hit_by_war_with_fine."<br>");
+		
+		$hit_by_app_damage = ( $apponent["attack"] * $apponent["attack"] ) / ( $apponent["attack"] + $warrior["shield"] );
+		$hit_by_app_damage = round($hit_by_app_damage, 0);
+		$hit_by_app_with_fine = $hit_by_app_damage * ( ( ( $warrior["level"] - $apponent["level"]) / $warrior["level"] ) +1 );
+		$hit_by_app_with_fine = round($hit_by_app_with_fine, 0);
+		$hit_by_app_only_fine = $hit_by_app_damage - $hit_by_app_with_fine;
+		echo("Защищается с уроном ".$hit_by_app_damage." за каждый удар. Штраф разницы уровня ".$hit_by_app_only_fine.". Защитано дамага ".$hit_by_app_with_fine."<br>");
 
-			echo("<br> / ".$hit_w_a." / ".$hit_a_w);
-		}
+		$num_hits_war = $apponent["hp"] / $hit_by_war_with_fine;
+		$num_hits_app = $warrior["hp"] / $hit_by_app_with_fine;
+		$num_hits_war = round($num_hits_war, 0);
+		$num_hits_app = round($num_hits_app, 0);
+
+		echo("Количество ударов до смерти аппонента: ".$num_hits_war."<br>");
+		echo("Количество ударов до смерти вашего война: ".$num_hits_app."<br>");
 		?>
 
 		<!-- Записать результаты в БД -->
