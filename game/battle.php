@@ -91,7 +91,7 @@ include('../navbar.php');
 			</div>
 			<div class="battle-form__log_text battle-form__log_right">
 				Защищается с уроном <span class="_blue"> <?=round($hit_by_app_damage,2)?> </span> за каждый удар. <br>
-				<?=$hit_by_app_only_fine>0?"Бонус":"Штраф"?> разницы уровня <span class=" <?=$hit_by_app_only_fine>0?"_green":"_red"?>"><?=round($hit_by_app_only_fine*100,2)?></span>% <br>
+				<?=$hit_by_app_only_fine>0?"Бонус":"Штраф"?> разницы уровня в защите<span class=" <?=$hit_by_app_only_fine>0?"_green":"_red"?>"><?=round($hit_by_app_only_fine*100,2)?></span>% <br>
 				Защитано дамага <span class="<?=$hit_by_app_with_fine<$hit_by_app_damage?"_red":"_green"?>"><?=round($hit_by_app_with_fine,2)?></span>.<br>
 				Количество ударов до победы:
 				<?php if($num_hits_app==99999):?>
@@ -116,35 +116,46 @@ include('../navbar.php');
 				echo("Бой закончился. <br>");
 				if ( $num_hits_war >= $num_hits_app ) {
 					echo("<span class='_red'>Ваш боец проиграл.</span>");    //Ты проиграл
-					$apponent = increase_warrior($apponent, $warrior["hp"]);
+					$apponent = increase_warrior($apponent, $warrior["hp"]/3);
 					if ( edit_warrior( $apponent )>=0 ){
-						echo("<br>Данные бойца ".$apponent["name"]." обновлены.");
+						echo("<br><span style='font-size:50%; font-weight: normal;'>".$apponent["name"]." забирает себе ".round($warrior["hp"]/3,1)."очков.</span>");
 					}else{
 						echo("<br>Ошибка обновления бойца: ".$apponent["name"].".");
 					}
-					$warrior["hp"]="0";
+					$warrior["hp"] -= $warrior["hp"]/3;
 					if ( edit_warrior( $warrior )>=0 ){
-						echo("<br>Данные бойца ".$warrior["name"]." обновлены.");
+						// 
 					}else{
 						echo("<br>Ошибка обновления бойца: ".$warrior["name"].".");
 					}
 				}else{
 					echo("<span class='_green'>ВЫ ВЫИГРАЛИ !!!</span>"); //Ты выиграл
-					$warrior = increase_warrior($warrior, $apponent["hp"]);
+					$warrior = increase_warrior($warrior, $apponent["hp"]/3);
 					if ( edit_warrior( $warrior )>=0 ){
-						echo("<br>Данные бойца ".$warrior["name"]." обновлены.");
+						echo("<br><span style='font-size:50%; font-weight: normal;'>".$warrior["name"]." забирает себе ".round($apponent["hp"]/3,1)." очков.</span>");
 					}else{
 						echo("<br>Ошибка обновления бойца: ".$warrior["name"].".");
 					}
-					$apponent["hp"]="0";
+					$apponent["hp"] -= $apponent["hp"]/3;
 					if ( edit_warrior( $apponent )>=0 ){
-						echo("<br>Данные бойца ".$apponent["name"]." обновлены.");
+						//echo("<br>Данные бойца ".$apponent["name"]." обновлены.");
 					}else{
 						echo("<br>Ошибка обновления бойца: ".$apponent["name"].".");
 					}
 				}
 			}
 			?>
+		</div>
+
+		<?php
+		$n_warrior = get_warrior_by_id( $_POST['id_warrior'] );
+		$n_apponent = get_warrior_by_id( $_POST['id_apponent'] );
+		?>
+
+		<div class="battle-form__results">
+			<div class="all-forms__caption grid-cap">Бойцы после сражения:</div>
+			<div class="all-forms it1"><?php get_html_warrior_string( $n_warrior ); ?></div>
+			<div class="all-forms it1"><?php get_html_warrior_string( $n_apponent ); ?></div>
 		</div>
 
 		<!-- Записать лог боя в БД -->
