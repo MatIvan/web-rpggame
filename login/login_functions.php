@@ -10,13 +10,12 @@ function set_user_balance( $user_id, $new_balance ){
 		$new_balance,
 		$user_id
 	);
-	mysqli_stmt_execute($stmt);
-	$res = mysqli_stmt_affected_rows($stmt);
-	mysqli_stmt_close($stmt);
-	if ($res != 1) {
-		print_error( " function set_user_balance > ( res != 1) " );
-		return false;
+	if (!mysqli_stmt_execute($stmt)){
+		print_error( " function edit_warrior > Execute Error > ".mysqli_stmt_errno($stmt)." > ".mysqli_stmt_error($stmt) );
+		mysqli_stmt_close($stmt);
+		return -1;
 	}
+	mysqli_stmt_close($stmt);
 	return true;
 }
 
@@ -70,10 +69,13 @@ function add_new_user( $user ){
 		$mdPassword,
 		$user["balance"]
 	);
-	mysqli_stmt_execute($stmt);
-	$res = mysqli_stmt_affected_rows($stmt);
+	if (!mysqli_stmt_execute($stmt)){
+		print_error( " function edit_warrior > Execute Error > ".mysqli_stmt_errno($stmt)." > ".mysqli_stmt_error($stmt) );
+		mysqli_stmt_close($stmt);
+		return 0;
+	}
 	mysqli_stmt_close($stmt);
-	return res;
+	return mysqli_insert_id($link);
 }
 
 //Проверить логин и пароль пользователя.

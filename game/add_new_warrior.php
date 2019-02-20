@@ -29,26 +29,32 @@ include('../navbar.php');
 					'hp' => $_POST['hp'],
 					'attack' => $_POST['attack'],
 					'shield' => $_POST['shield'],
-					'user_id' => $_SESSION['user_id'],
-					'new_balance' => "0"
+					'user_id' => $_SESSION['user_id']
 				);
-				
 				$new_balance = calculate_balance($new_warrior);
 				if ( $new_balance >= 0 ) {
-					$new_warrior["new_balance"] = $new_balance;
+
+					//Новый боец или изменение старого ?
 					if( $new_warrior['id']==="0" ){
-						if ( add_new_warrior( $new_warrior ) === 0 ){
-							echo "Что-то пошло не так: Боец не был создан!!!";
-						}else{
-							echo "Вы успешно создали нового бойца!";
-						}
+						$res_war = add_new_warrior( $new_warrior );
 					}else{
-						if ( edit_warrior( $new_warrior ) === false ){
-							echo "Что-то пошло не так: Боец не был изменен!!!";
-						}else{
-							echo "Вы успешно изменили бойца!";
-						}
+						$res_war = edit_warrior( $new_warrior );
 					}
+
+					//Результат сохранинея в БД
+					if ( $res_war == -1 ){
+						echo "Что-то пошло не так!";
+					}else{
+						echo "Вы успешно изменили бойца!";
+					}
+
+					//Обновить баланс в БД
+					if ( set_user_balance( $res_war, $new_balance ) ){
+						echo "Ваш баланс обновлён.";
+					}else{
+						echo "Ошибка обновления баланса.";
+					}
+
 					$_SESSION['user_balance'] = get_user_balance( $_SESSION['user_id'] );
 				}elseif ($new_balance === -99999 ){
 					echo "Ошибка чтения Базы Данных";

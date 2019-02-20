@@ -12,14 +12,14 @@ function get_user_warriors( $user_id ){
 // Вернёт таблицу со всеми возможными аппонентами.
 function get_user_apponents( $user_id ){
 	global $link;
-	$sql = "SELECT id, name, level FROM warriors WHERE user_id<>$user_id";
+	$sql = "SELECT id, name, level FROM warriors WHERE user_id<>$user_id AND hp<>0";
 	$result = mysqli_query($link, $sql);
 	$apponents = mysqli_fetch_all($result, MYSQLI_ASSOC);
 	return $apponents;
 }
 
 //Добавить нового бойца в БД
-//True если успех, иначе False
+//вернёт ID бойца или -1
 function add_new_warrior( $new_warrior){
 	global $link;
 	$new_level = ( $new_warrior["hp"] + $new_warrior["attack"] + $new_warrior["shield"] );
@@ -33,14 +33,15 @@ function add_new_warrior( $new_warrior){
 		$new_warrior["user_id"],
 		$new_level
 	);
-	mysqli_stmt_execute($stmt);
-	$res = mysqli_stmt_affected_rows($stmt);
-	mysqli_stmt_close($stmt);
-	if ( $res != 1 ) {
-		print_error( " function add_new_warrior > ( res != 1 ) " );
-		return false;
+	if (!mysqli_stmt_execute($stmt)){
+		print_error( " function edit_warrior > Execute Error > ".mysqli_stmt_errno($stmt)." > ".mysqli_stmt_error($stmt) );
+		mysqli_stmt_close($stmt);
+		return -1;
 	}
-	return set_user_balance( $new_warrior["user_id"], $new_warrior["new_balance"] );
+	mysqli_stmt_close($stmt);
+
+	//получить ID созданного бойца
+	return mysqli_insert_id($link);
 }
 
 //Вернёт бойца по ID
@@ -53,31 +54,44 @@ function get_warrior_by_id( $warrior_id ){
 		return false;
 	}
 	$warrior = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
 	return $warrior;
 }
 
 //Изменить бойца в БД
 function edit_warrior( $warrior ){
 	global $link;
-	$new_level = ( $warrior["hp"] + $warrior["attack"] + $warrior["shield"] );
-	$stmt  = mysqli_prepare( $link, "UPDATE warriors SET name = ?, hp = ?, attack = ?, shield = ?, level = ? WHERE warriors.id = ?" );
-	mysqli_stmt_bind_param($stmt,
+
+	$new_lvl = ( $warrior["hp"] + $warrior["attack"] + $warrior["shield"] );
+	$sqlstr = "UPDATE warriors SET name = ?, hp = ?, attack = ?, shield = ?, level = ? WHERE id = ?";
+	$stmt  = mysqli_prepare( $link, $sqlstr );
+	if (!mysqli_stmt_bind_param($stmt,
 		"siiiii",
 		$warrior["name"],
 		$warrior["hp"],
 		$warrior["attack"],
 		$warrior["shield"],
-		$new_level,
+		$new_lvl,
 		$warrior["id"]
-	);
-	mysqli_stmt_execute($stmt);
-	$res = mysqli_stmt_affected_rows($stmt);
-	mysqli_stmt_close($stmt);
-	if ( $res != 1 ) {
-		print_error( " function edit_warrior > ( res != 1 ) " );
-		return false;
+	) ){
+		print_error( " function edit_warrior > Bind Error > ".mysqli_stmt_errno($stmt)." > ".mysqli_stmt_error($stmt) );
+		mysqli_stmt_close($stmt);
+		return -1;
 	}
-	return set_user_balance( $warrior["user_id"], $warrior["new_balance"] );
+	if (!mysqli_stmt_execute($stmt)){
+		print_error( " function edit_warrior > Execute Error > ".mysqli_stmt_errno($stmt)." > ".mysqli_stmt_error($stmt) );
+		mysqli_stmt_close($stmt);
+		return -1;
+	}
+
+	if ( mysqli_stmt_errno($stmt)!=0 ){
+		print_error( " function edit_warrior > ".mysqli_stmt_errno($stmt)." > ".mysqli_stmt_error($stmt) );
+		mysqli_stmt_close($stmt);
+		return -1;
+	}
+	mysqli_stmt_close($stmt);
+	
+	return $warrior["id"];
 }
 
 //Проверит сумма параметров бойца с остатком на балансе.
@@ -113,6 +127,19 @@ function calculate_balance($new_warrior){
 	$old_balance = $old_balance + ( $old_warrior['hp'] +$old_warrior['attack'] + $old_warrior['shield'] );
 	$new_balance = $old_balance - ( $new_warrior['hp'] +$new_warrior['attack'] + $new_warrior['shield'] );
 	return $new_balance;
+}
+
+//Улучшить аппонента
+function increase_warrior($warrior, $value){
+	if ($value==0) return $warrior;
+	$one_part = intval($value/3);
+	$remain = $value % 3;
+	$warrior["attack"] += $one_part;
+	$warrior["shield"] += $one_part;
+	$warrior["hp"] += $one_part;
+	if ($remain>0) $warrior["hp"] += $remain;
+
+	return $warrior;
 }
 
 
