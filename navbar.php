@@ -6,7 +6,7 @@
 	<?php else: ?>
 		<a class="navbar__a" href="/game/warriors.php">Бойцы</a>
 		<a class="navbar__a" href="/game/select_apponent.php">Сразиться</a>
-		<a class="navbar__a" href="#">История</a></li>
+		<a class="navbar__a" href="/game/history.php">История</a></li>
 		<a class="navbar__a" href="/login/logout.php">Выход</a>
 	<?php endif ?>
 </nav>

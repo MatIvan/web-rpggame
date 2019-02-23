@@ -182,5 +182,37 @@ function save_history( $warrior, $apponent, $battle_result ){
 	return mysqli_insert_id($link);
 }
 
+//Вернёт атакующего бойца из записи истории
+function extract_warrior( $history, $prefix ){
+	/* $prefix 
+		_w нападающий
+		_a защищающийся
+	*/
+	$level = ( $history["hp".$prefix] + $history["attack".$prefix] + $history["shield".$prefix] );
+	$warrior = array (
+		"hp" => $history["hp".$prefix],
+		"attack" => $history["attack".$prefix],
+		"shield" => $history["shield".$prefix],
+		"level" => $level,
+		"user_id" => $history["user_id".$prefix],
+		"name" => $history["name".$prefix]
+	);
+
+	return $warrior;
+}
+
+//Вернёт историю боёв пользователя
+function get_user_historys( $user_id, $prefix ){
+	/* $prefix 
+		_w нападающий
+		_a защищающийся
+	*/
+	global $link;
+	$sql = "SELECT * FROM history WHERE user_id".$prefix."=$user_id";
+	$result = mysqli_query($link, $sql);
+	$historys = mysqli_fetch_all($result, MYSQLI_ASSOC);
+	return $historys;
+}
+
 
 ?>

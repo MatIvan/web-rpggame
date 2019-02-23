@@ -3,9 +3,10 @@
     width: 90%;
     margin: 0 auto;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
     justify-items: center;
     align-items: start;
+
+    grid-auto-rows: minmax(16px, auto);
 }
 
 .grid-cap{
@@ -16,5 +17,18 @@
     /* border: 1px solid red; */
     width: 289px;
     display: block;
-    
+}
+
+.redfon-left {
+    background: linear-gradient(to left, #f3755f, #ffffff);
+}
+.greenfon-right {
+    background: linear-gradient(to right, #488542, #ffffff);
+}
+
+.redfon-right {
+    background: linear-gradient(to right, #f3755f, #ffffff);
+}
+.greenfon-left {
+    background: linear-gradient(to left, #488542, #ffffff);
 }
