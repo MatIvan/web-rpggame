@@ -1,0 +1,22 @@
+.instruction {
+    text-align: justify;
+    font-size: 80%;
+}
+
+.instruction p {
+    padding: 6px 14px;
+}
+
+.instruction ul, ol {
+    margin-left: 40px;
+}
+
+.instruction h2{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 140%;
+}
+
+.formula {
+    background-color: #c5c5c5;
+}

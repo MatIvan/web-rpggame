@@ -1,6 +1,6 @@
 <nav class="navbar">
 	<a class="navbar__a" href="/index.php">Главная</a>
-	<a class="navbar__a" href="#">Правила</a>
+	<a class="navbar__a" href="/instructions.php">Правила</a>
 	<?php if( empty($_SESSION['user_id']) ): ?>
 		<a class="navbar__a" href="/login/registration.php">Регистрация</a>
 	<?php else: ?>
