@@ -40,6 +40,9 @@ include('../navbar.php');
 			message_box( "Один из боёцов уже мертв (Здоровье = 0)", "/game/select_apponent.php", "Назад" ); 
 			alarm_exit();
 		}
+
+		$warrior_history = $warrior;
+		$apponent_history = $apponent;
 		
 		$warrior_show = $warrior;
 		include("warrior_big_form.php");
@@ -122,6 +125,7 @@ include('../navbar.php');
 					}else{
 						echo("<br>Ошибка обновления бойца: ".$apponent["name"].".");
 					}
+					$result_history = -$warrior["hp"]/3;
 					$warrior["hp"] -= $warrior["hp"]/3;
 					if ( edit_warrior( $warrior )>=0 ){
 						// 
@@ -130,6 +134,7 @@ include('../navbar.php');
 					}
 				}else{
 					echo("<span class='_green'>ВЫ ВЫИГРАЛИ !!!</span>"); //Ты выиграл
+					$result_history = $apponent["hp"]/3;
 					$warrior = increase_warrior($warrior, $apponent["hp"]/3);
 					if ( edit_warrior( $warrior )>=0 ){
 						echo("<br><span style='font-size:50%; font-weight: normal;'>".$warrior["name"]." забирает себе ".round($apponent["hp"]/3,1)." очков.</span>");
@@ -159,6 +164,7 @@ include('../navbar.php');
 		</div>
 
 		<!-- Записать лог боя в БД -->
+		<?php save_history( $warrior_history, $apponent_history, $result_history ); ?>
 
 		<div class="navbar navbar_center">
 			<a class="navbar__a" href="/game/select_apponent.php">Найти ещё аппонента</a>

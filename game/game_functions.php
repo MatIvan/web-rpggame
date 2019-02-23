@@ -142,5 +142,45 @@ function increase_warrior($warrior, $value){
 	return $warrior;
 }
 
+//Занести параметры боя в таблицус историей
+//Вернёт ID сохранённой записи или -1 в случае ошибки
+function save_history( $warrior, $apponent, $battle_result ){
+	global $link;
+	$stmt  = mysqli_prepare( $link, "INSERT INTO history ( datetime, user_id_w, name_w, hp_w, attack_w, shield_w, user_id_a, name_a, hp_a, attack_a, shield_a, resut ) VALUES (NOW(),?,?,?,?,?,?,?,?,?,?,?)" );
+	if ($stmt === false){
+		print_error( " function save_history > Prepare Error > ".htmlspecialchars( mysqli_error($link) ) );
+		return -1;
+	}
+	
+	if (!mysqli_stmt_bind_param($stmt,
+		"isiiiisiiii",
+		$warrior["user_id"],
+		$warrior["name"],
+		$warrior["hp"],
+		$warrior["attack"],
+		$warrior["shield"],
+		$apponent["user_id"],
+		$apponent["name"],
+		$apponent["hp"],
+		$apponent["attack"],
+		$apponent["shield"],
+		$battle_result
+	) ){
+		print_error( " function save_history > Bind Error > ".mysqli_stmt_errno($stmt)." > ".mysqli_stmt_error($stmt)." > ".htmlspecialchars($mysqli->error) );
+		mysqli_stmt_close($stmt);
+		return -1;
+	}
+
+	if (!mysqli_stmt_execute($stmt)){
+		print_error( " function save_history > Execute Error > ".mysqli_stmt_errno($stmt)." > ".mysqli_stmt_error($stmt)." > ".htmlspecialchars($mysqli->error) );
+		mysqli_stmt_close($stmt);
+		return -1;
+	}
+	mysqli_stmt_close($stmt);
+
+	//получить ID созданного бойца
+	return mysqli_insert_id($link);
+}
+
 
 ?>
