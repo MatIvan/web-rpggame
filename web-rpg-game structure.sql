@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Фев 23 2019 г., 22:21
+-- Время создания: Фев 24 2019 г., 10:24
 -- Версия сервера: 5.6.41
 -- Версия PHP: 5.5.38
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- База данных: `web-rpg-game`
 --
+CREATE DATABASE IF NOT EXISTS `web-rpg-game` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `web-rpg-game`;
 
 -- --------------------------------------------------------
 
@@ -54,7 +56,8 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `login` varchar(20) NOT NULL,
   `password` varchar(35) NOT NULL,
-  `balance` int(11) NOT NULL DEFAULT '0'
+  `balance` int(11) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
