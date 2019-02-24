@@ -19,6 +19,7 @@ include('../navbar.php');
 			unset($_SESSION['user_id']);
 			unset($_SESSION['user_login']);
 			unset($_SESSION['user_balance']);
+			unset($_SESSION['user_status']);
 			?>
 			<div class='all-forms__caption'>
 				До скорой встречи! 

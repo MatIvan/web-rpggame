@@ -23,7 +23,7 @@ function set_user_balance( $user_id, $new_balance ){
 //Вернет логин и баланс пользователя по id
 function get_user_by_id( $user_id ){
 	global $link;
-	$sql = "SELECT login, balance FROM users WHERE id='$user_id'";
+	$sql = "SELECT login, balance, status FROM users WHERE id='$user_id'";
 	$result = mysqli_query($link, $sql);
 	$user = mysqli_fetch_array($result);
 	return $user;

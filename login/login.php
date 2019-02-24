@@ -18,12 +18,14 @@ include('../navbar.php');
 					unset($_SESSION['user_id']);
 					unset($_SESSION['user_login']);
 					unset($_SESSION['user_balance']);
+					unset($_SESSION['user_status']);
 					echo "<div class='all-forms__caption'>Логин или пароль неверный.</div>";
 				}
 				else {
 					$user = get_user_by_id( $_SESSION['user_id'] );
 					$_SESSION['user_login'] = $user["login"];
 					$_SESSION['user_balance'] = $user["balance"];
+					$_SESSION['user_status'] = $user["status"];
 					echo "<meta http-equiv='Refresh' content='0; URL=/index.php'>";
 				}
 			}
