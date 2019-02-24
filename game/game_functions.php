@@ -214,5 +214,23 @@ function get_user_historys( $user_id, $prefix ){
 	return $historys;
 }
 
+//Вернет бойца со случайными характеристиками по указанному уровню
+function generate_bot( $name, $lvl ){
+	$score=$lvl;
+	$new_hp = rand(1, $score/3*2);
+	$score-=$new_hp;
+	$new_shield = rand(1, $score/4*3);
+	$score-=$new_shield;
+	$new_attack = $lvl-$new_hp-$new_shield;
+
+	$new_warrior = array(
+		'name' => $name,
+		'hp' => $new_hp,
+		'attack' => $new_attack,
+		'shield' => $new_shield,
+		'user_id' => $_SESSION['user_id']
+	);
+	return $new_warrior;
+}
 
 ?>

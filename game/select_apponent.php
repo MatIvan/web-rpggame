@@ -61,7 +61,7 @@ include('../navbar.php');
 			<input class="all-forms__btn all-forms__btn_center" type="submit" value="НАЧАТЬ СРАЖЕНИЕ" />
 		</form>
 	<?php endif ?>
-
+	<br><br>
 	
 </main>
 
