@@ -121,6 +121,7 @@ include('../navbar.php');
 				if ( $num_hits_war >= $num_hits_app ) {
 					echo("<span class='_red'>Ваш боец проиграл.</span>");    //Ты проиграл
 					$score=round($warrior["hp"]/3,0);
+					if ($score<2) $score=$warrior["hp"];
 					$apponent = increase_warrior($apponent, $score);
 					if ( edit_warrior( $apponent )>=0 ){
 						echo("<br><span style='font-size:50%; font-weight: normal;'>".$apponent["name"]." забирает себе ".$score."очков.</span>");
@@ -137,6 +138,7 @@ include('../navbar.php');
 				}else{
 					echo("<span class='_green'>ВЫ ВЫИГРАЛИ !!!</span>"); //Ты выиграл
 					$score=round($apponent["hp"]/3,0);
+					if ($score<2) $score=$apponent["hp"];
 					$result_history = $score;
 					$warrior = increase_warrior($warrior, $score);
 					if ( edit_warrior( $warrior )>=0 ){

@@ -12,7 +12,7 @@ function get_user_warriors( $user_id ){
 // Вернёт таблицу со всеми возможными оппонентами.
 function get_user_apponents( $user_id ){
 	global $link;
-	$sql = "SELECT id, name, level FROM warriors WHERE user_id<>$user_id AND hp<>0";
+	$sql = "SELECT id, name, level FROM warriors WHERE user_id<>$user_id AND hp<>0 ORDER BY level";
 	$result = mysqli_query($link, $sql);
 	$apponents = mysqli_fetch_all($result, MYSQLI_ASSOC);
 	return $apponents;
