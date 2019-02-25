@@ -242,7 +242,7 @@ function decrease_warrior($warrior, $value){
 	$warrior["shield"] -= $one_part;
 	$warrior["hp"] -= $one_part;
 	if ($remain>0) $warrior["hp"] -= $remain;
-	if ($warrior["hp"]<0) $warrior["hp"]=0;
+	if ($warrior["hp"]<0) $warrior["hp"]="0";
 
 	return $warrior;
 }
