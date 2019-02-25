@@ -61,13 +61,13 @@ include('../navbar.php');
 		<?php
 			/* Для нападающего */
 			$hit_by_war_damage = (( $warrior["attack"] * $warrior["attack"] ) / ( $warrior["attack"] + $apponent["shield"] ))/10;
-			$hit_by_war_only_fine = ( ( ( $apponent["level"] - $warrior["level"]) / $apponent["level"] ) + 1 );
+			$hit_by_war_only_fine = ( ( ( $apponent["level"] - $warrior["level"]) / $apponent["level"] )  );
 			$hit_by_war_with_fine = $hit_by_war_damage + $hit_by_war_damage * $hit_by_war_only_fine;
 			if ($hit_by_war_with_fine<0) $hit_by_war_with_fine = 0; //Урон не может быть отрицательным
 
 			/* Для защищающегося */
 			$hit_by_app_damage = (( $apponent["attack"] * $apponent["attack"] ) / ( $apponent["attack"] + $warrior["shield"] ))/10;
-			$hit_by_app_only_fine = ( ( ( $warrior["level"] - $apponent["level"]) / $warrior["level"] ) + 1 );
+			$hit_by_app_only_fine = ( ( ( $warrior["level"] - $apponent["level"]) / $warrior["level"] )  );
 			if ( $hit_by_app_only_fine<0 ) $hit_by_app_only_fine = -$hit_by_app_only_fine; //оппоненту ставится только положительный бонус от разницы в уровнях
 			$hit_by_app_with_fine = $hit_by_app_damage + $hit_by_app_damage * $hit_by_app_only_fine;
 
