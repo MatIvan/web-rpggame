@@ -16,6 +16,9 @@
 	margin-top: 20px;
 	box-shadow: 0 0 10px #777; 
 	text-align: left;
+
+	max-height: 500px;
+	overflow: auto;
 }
 
 #my_warriors_form {

@@ -29,7 +29,7 @@ include('../navbar.php');
                 $warrior = extract_warrior( $history, "_w" );
                 $apponent = extract_warrior( $history, "_a" );
                 ?>
-                <div class="it1 <?= $history["resut"]>=0?"greenfon-right":" ";?>"><?php get_html_warrior_string( $warrior ); ?></div>
+                <div class="it1 <?= $history["resut"]>0?"greenfon-right":" ";?>"><?php get_html_warrior_string( $warrior ); ?></div>
                 <div class="it1 <?= $history["resut"]<0?"redfon-left":" ";?>"><?php get_html_warrior_string( $apponent ); ?></div>
 			<?php endforeach; ?>
 		</div>
@@ -48,7 +48,7 @@ include('../navbar.php');
                 $warrior = extract_warrior( $history, "_w" );
                 $apponent = extract_warrior( $history, "_a" );
                 ?>
-                <div class="it1 <?= $history["resut"]>=0?"redfon-right":" ";?>"><?php get_html_warrior_string( $warrior ); ?></div>
+                <div class="it1 <?= $history["resut"]>0?"redfon-right":" ";?>"><?php get_html_warrior_string( $warrior ); ?></div>
                 <div class="it1 <?= $history["resut"]<0?"greenfon-left":" ";?>""><?php get_html_warrior_string( $apponent ); ?></div>
 			<?php endforeach; ?>
 		</div>

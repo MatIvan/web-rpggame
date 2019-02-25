@@ -113,20 +113,22 @@ include('../navbar.php');
 				if ( $num_hits_war < $num_hits_app ) {
 					echo("<br>Нападавший убежал."); //Ты убежал
 				}else{
-					echo("<br>оппонент убежал."); //Противник убежал
+					echo("<br>Оппонент убежал."); //Противник убежал
 				}
+				$result_history = 0;
 			}else{
 				echo("Бой закончился. <br>");
 				if ( $num_hits_war >= $num_hits_app ) {
 					echo("<span class='_red'>Ваш боец проиграл.</span>");    //Ты проиграл
-					$apponent = increase_warrior($apponent, $warrior["hp"]/3);
+					$score=round($warrior["hp"]/3,0);
+					$apponent = increase_warrior($apponent, $score);
 					if ( edit_warrior( $apponent )>=0 ){
-						echo("<br><span style='font-size:50%; font-weight: normal;'>".$apponent["name"]." забирает себе ".round($warrior["hp"]/3,1)."очков.</span>");
+						echo("<br><span style='font-size:50%; font-weight: normal;'>".$apponent["name"]." забирает себе ".$score."очков.</span>");
 					}else{
 						echo("<br>Ошибка обновления бойца: ".$apponent["name"].".");
 					}
-					$result_history = -$warrior["hp"]/3;
-					$warrior["hp"] -= $warrior["hp"]/3;
+					$result_history = -$score;
+					$warrior["hp"] -= $score;
 					if ( edit_warrior( $warrior )>=0 ){
 						// 
 					}else{
@@ -134,14 +136,15 @@ include('../navbar.php');
 					}
 				}else{
 					echo("<span class='_green'>ВЫ ВЫИГРАЛИ !!!</span>"); //Ты выиграл
-					$result_history = $apponent["hp"]/3;
-					$warrior = increase_warrior($warrior, $apponent["hp"]/3);
+					$score=round($apponent["hp"]/3,0);
+					$result_history = $score;
+					$warrior = increase_warrior($warrior, $score);
 					if ( edit_warrior( $warrior )>=0 ){
-						echo("<br><span style='font-size:50%; font-weight: normal;'>".$warrior["name"]." забирает себе ".round($apponent["hp"]/3,1)." очков.</span>");
+						echo("<br><span style='font-size:50%; font-weight: normal;'>".$warrior["name"]." забирает себе ".$score." очков.</span>");
 					}else{
 						echo("<br>Ошибка обновления бойца: ".$warrior["name"].".");
 					}
-					$apponent["hp"] -= $apponent["hp"]/3;
+					$apponent["hp"] -= $score;
 					if ( edit_warrior( $apponent )>=0 ){
 						//echo("<br>Данные бойца ".$apponent["name"]." обновлены.");
 					}else{
