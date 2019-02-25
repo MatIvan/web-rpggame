@@ -9,7 +9,7 @@ function get_user_warriors( $user_id ){
 	return $warriors;
 }
 
-// Вернёт таблицу со всеми возможными аппонентами.
+// Вернёт таблицу со всеми возможными оппонентами.
 function get_user_apponents( $user_id ){
 	global $link;
 	$sql = "SELECT id, name, level FROM warriors WHERE user_id<>$user_id AND hp<>0";
@@ -126,10 +126,11 @@ function calculate_balance($new_warrior){
 	//Веполнить проверку параметров
 	$old_balance = $old_balance + ( $old_warrior['hp'] +$old_warrior['attack'] + $old_warrior['shield'] );
 	$new_balance = $old_balance - ( $new_warrior['hp'] +$new_warrior['attack'] + $new_warrior['shield'] );
+	settype($new_balance,"integer");
 	return $new_balance;
 }
 
-//Улучшить аппонента
+//Улучшить оппонента
 function increase_warrior($warrior, $value){
 	if ($value==0) return $warrior;
 	$one_part = intval($value/3);

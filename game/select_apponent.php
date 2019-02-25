@@ -5,7 +5,7 @@ include('../navbar.php');
 
 <main class="main-block">
 	<div class="main-block__caption">
-	Выбор аппонента:
+	Выбор оппонента:
 	</div>
 	
 	<?php if( empty($_SESSION['user_id']) ): ?>
@@ -38,12 +38,12 @@ include('../navbar.php');
 				<?php endif ?>
 			</section>
 			<section class="list_warriors_form" id="apponents_form">
-				<h2>Аппоненты:</h2>
+				<h2>оппоненты:</h2>
 				<?php 
 					$apponents = get_user_apponents( $_SESSION['user_id'] );
 				?>
 				<?php if( count($apponents) === 0): ?>
-					Нет подходящих аппонентов.
+					Нет подходящих оппонентов.
 				<?php else: ?>
 					<?php foreach($apponents as $apponent): ?>
 						<div class="inputGroup">

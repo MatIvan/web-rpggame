@@ -20,7 +20,7 @@ include('../navbar.php');
 			alarm_exit();
 		}
 		if( $_POST['id_apponent']===NULL ){
-			message_box( "Не выбран аппонент для битвы.", "/game/select_apponent.php", "Назад" );
+			message_box( "Не выбран оппонент для битвы.", "/game/select_apponent.php", "Назад" );
 			alarm_exit();
 		}
 		?>
@@ -32,7 +32,7 @@ include('../navbar.php');
 			alarm_exit();
 		}
 		if ( ! $apponent = get_warrior_by_id( $_POST['id_apponent'] ) ) {
-			message_box( "Аппонент не найден в БД.", "/game/select_apponent.php", "Назад" ); 
+			message_box( "оппонент не найден в БД.", "/game/select_apponent.php", "Назад" ); 
 			alarm_exit();
 		}
 
@@ -68,7 +68,7 @@ include('../navbar.php');
 			/* Для защищающегося */
 			$hit_by_app_damage = (( $apponent["attack"] * $apponent["attack"] ) / ( $apponent["attack"] + $warrior["shield"] ))/10;
 			$hit_by_app_only_fine = ( ( ( $warrior["level"] - $apponent["level"]) / $warrior["level"] ) + 1 );
-			if ( $hit_by_app_only_fine<0 ) $hit_by_app_only_fine = -$hit_by_app_only_fine; //Аппоненту ставится только положительный бонус от разницы в уровнях
+			if ( $hit_by_app_only_fine<0 ) $hit_by_app_only_fine = -$hit_by_app_only_fine; //оппоненту ставится только положительный бонус от разницы в уровнях
 			$hit_by_app_with_fine = $hit_by_app_damage + $hit_by_app_damage * $hit_by_app_only_fine;
 
 			/* Длительность сражения */
@@ -113,7 +113,7 @@ include('../navbar.php');
 				if ( $num_hits_war < $num_hits_app ) {
 					echo("<br>Нападавший убежал."); //Ты убежал
 				}else{
-					echo("<br>Аппонент убежал."); //Противник убежал
+					echo("<br>оппонент убежал."); //Противник убежал
 				}
 			}else{
 				echo("Бой закончился. <br>");
@@ -167,7 +167,7 @@ include('../navbar.php');
 		<?php save_history( $warrior_history, $apponent_history, $result_history ); ?>
 
 		<div class="navbar navbar_center">
-			<a class="navbar__a" href="/game/select_apponent.php">Найти ещё аппонента</a>
+			<a class="navbar__a" href="/game/select_apponent.php">Найти ещё оппонента</a>
 		</div>
 		<br><br>
 	</div>

@@ -49,13 +49,15 @@ include('../navbar.php');
 					}
 
 					//Обновить баланс в БД
-					if ( set_user_balance( $res_war, $new_balance ) ){
+					if ( set_user_balance( $_SESSION['user_id'], $new_balance ) ){
 						echo "Ваш баланс обновлён.";
 					}else{
 						echo "Ошибка обновления баланса.";
 					}
 
 					$_SESSION['user_balance'] = get_user_balance( $_SESSION['user_id'] );
+
+
 				}elseif ($new_balance === -99999 ){
 					echo "Ошибка чтения Базы Данных";
 				}else{
