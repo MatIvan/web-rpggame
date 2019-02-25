@@ -146,7 +146,8 @@ include('../navbar.php');
 					}else{
 						echo("<br>Ошибка обновления бойца: ".$warrior["name"].".");
 					}
-					$apponent["hp"] -= $score;
+					$apponent["hp"] = decrease_warrior($apponent, $score);
+
 					if ( edit_warrior( $apponent )>=0 ){
 						//echo("<br>Данные бойца ".$apponent["name"]." обновлены.");
 					}else{

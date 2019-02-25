@@ -234,4 +234,17 @@ function generate_bot( $name, $lvl ){
 	return $new_warrior;
 }
 
+function decrease_warrior($warrior, $value){
+	if ($value==0) return $warrior;
+	$one_part = intval($value/3);
+	$remain = $value % 3;
+	$warrior["attack"] -= $one_part;
+	$warrior["shield"] -= $one_part;
+	$warrior["hp"] -= $one_part;
+	if ($remain>0) $warrior["hp"] -= $remain;
+	if ($warrior["hp"]<0) $warrior["hp"]=0;
+
+	return $warrior;
+}
+
 ?>
