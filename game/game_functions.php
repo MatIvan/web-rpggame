@@ -209,7 +209,7 @@ function get_user_historys( $user_id, $prefix ){
 		_a защищающийся
 	*/
 	global $link;
-	$sql = "SELECT * FROM history WHERE user_id".$prefix."=$user_id";
+	$sql = "SELECT * FROM history WHERE user_id".$prefix."=$user_id ORDER BY datetime DESC";
 	$result = mysqli_query($link, $sql);
 	$historys = mysqli_fetch_all($result, MYSQLI_ASSOC);
 	return $historys;
