@@ -1,10 +1,23 @@
+.navwrapper{
+	display: grid;
+	grid-template-columns: 3fr 1fr;
+}
+
 .navbar{
 	border: none;
 	height: 1.8em;
 	padding-top: 4px;
 	text-align: left;
+	justify-self: left;
 }
 
 .navbar :last-child {
 	border-right: 1px solid black;/*#D3D3D3;*/
+}
+
+.navuser{
+	/* border: 1px solid red; */
+	justify-self: right;
+	height: 1.8em;
+	padding-top: 4px;
 }
