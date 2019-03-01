@@ -1,12 +1,17 @@
 .warrior-str{
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-    height: 18px;
+    min-height: 18px;
     text-align: left;
-    width: 250px;
+    width: 258px;
+
+    display: grid;
+    grid-template-columns: 1fr repeat(4, 40px);
+    grid-template-rows: 1fr;
+    align-items: center;
+    justify-items: left;
 }
 .warrior-str__element{
-    padding-left: 4px;
-    margin-right: 2px;
+    display: flex;
 }
 
 .warrior-str__element_name{
@@ -21,13 +26,16 @@
 }
 
 .warrior-str__element__txt{
-    width: 20px;
+    /* width: 20px; */
     font-size: 12px;
+    display: inline-block;
 }
 
+/* 
 .warrior-str_left{
     float: left;
 }
 .warrior-str_right{
     float:right;
 }
+ */

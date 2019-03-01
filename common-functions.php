@@ -32,37 +32,40 @@ function alarm_exit(){
 function get_html_warrior_string( $warrior ){
     echo ("
     <div class='warrior-str'>
-    <div class='warrior-str__element warrior-str__element_name warrior-str_left'>".$warrior["name"]."</div>");
-    if( isset($warrior["shield"]) ){
-        echo ("
-            <div class='warrior-str__element warrior-str_right'>
-                <img class='warrior-str__element__img' src='/img/shield16.png'>
-                <div class='warrior-str__element__txt warrior-str_right'>".$warrior["shield"]."</div>
-            </div>
-        ");
-    }
-    if( isset($warrior["attack"]) ){
-        echo ("
-            <div class='warrior-str__element warrior-str_right'>
-                <img class='warrior-str__element__img' src='/img/attack16.png'>
-                <div class='warrior-str__element__txt warrior-str_right'>".$warrior["attack"]."</div>
-            </div>
-        ");
-    }
+        <div class='warrior-str__element warrior-str__element_name warrior-str_left'>".$warrior["name"]."</div>
+        
+        <div class='warrior-str__element warrior-str_right'>
+            <img class='warrior-str__element__img' src='/img/level16.png'>
+            <div class='warrior-str__element__txt warrior-str_right'>".$warrior["level"]."</div>
+        </div>");
 
-    if( isset($warrior["hp"]) ){
-        echo ("
-            <div class='warrior-str__element warrior-str_right'>
-                <img class='warrior-str__element__img' src='/img/hp16.png'>    
-                <div class='warrior-str__element__txt warrior-str_right'>".$warrior["hp"]."</div>
-            </div>
-        ");
-    }
+        if( isset($warrior["hp"]) ){
+            echo ("
+                <div class='warrior-str__element warrior-str_right'>
+                    <img class='warrior-str__element__img' src='/img/hp16.png'>    
+                    <div class='warrior-str__element__txt warrior-str_right'>".$warrior["hp"]."</div>
+                </div>
+            ");
+        }
+
+        if( isset($warrior["attack"]) ){
+            echo ("
+                <div class='warrior-str__element warrior-str_right'>
+                    <img class='warrior-str__element__img' src='/img/attack16.png'>
+                    <div class='warrior-str__element__txt warrior-str_right'>".$warrior["attack"]."</div>
+                </div>
+            ");
+        }
+
+        if( isset($warrior["shield"]) ){
+            echo ("
+                <div class='warrior-str__element warrior-str_right'>
+                    <img class='warrior-str__element__img' src='/img/shield16.png'>
+                    <div class='warrior-str__element__txt warrior-str_right'>".$warrior["shield"]."</div>
+                </div>
+            ");
+        }
     echo ("
-    <div class='warrior-str__element warrior-str_right'>
-        <img class='warrior-str__element__img' src='/img/level16.png'>
-        <div class='warrior-str__element__txt warrior-str_right'>".$warrior["level"]."</div>
-    </div>
     </div>
     ");
 }
